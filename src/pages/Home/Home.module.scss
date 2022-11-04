@@ -1,0 +1,50 @@
+.wrapper {
+  width: 100%;
+}
+.logo {
+  margin-bottom: 30px;
+  width: 220px;
+}
+.title {
+  color: var(--bg-menulist-borderleft-color);
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  &-dsp {
+    color: gray;
+    text-align: center;
+  }
+}
+.space {
+  height: 80px;
+  width: 100%;
+  &-bottom {
+    height: 50vh;
+  }
+}
+.content {
+  //display: flex;
+}
+.ios {
+  width: 126px;
+  //border: 1px solid;
+  //border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.android {
+  width: 126px;
+  //border: 1px solid;
+  //border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.btnX {
+  font-weight: bold;
+}
+.btnX + .btnX {
+  margin-left: 15px;
+}
+.padding + .padding {
+  margin: 0px 10px;
+}

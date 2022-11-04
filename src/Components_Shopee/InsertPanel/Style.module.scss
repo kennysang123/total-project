@@ -1,0 +1,21 @@
+.x + .x {
+  margin-top: 15px;
+}
+.x2 {
+  margin-top: 15px;
+}
+.x3 {
+  color: var(--label-color);
+  font-weight: bold;
+}
+.x4::-webkit-input-placeholder {
+  color: var(--placeholder-color);
+  font-weight: 100;
+}
+.x4 {
+  color: var(--input-color);
+  font-weight: bold;
+}
+.x4:focus {
+  color: var(--input-color);
+}

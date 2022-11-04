@@ -1,0 +1,152 @@
+.space {
+  height: 10vh;
+}
+.card {
+  background-color: rgb(55, 55, 64);
+  box-shadow: 1px 1px 1px 0px black;
+  padding: 10px;
+  margin-bottom: 15px;
+  //user-select: none;
+  &-code {
+    background-color: rgba(0, 0, 0, 0.12);
+    /* margin-right: 10px; */
+    font-size: 20px;
+    padding: 0px 5px;
+    border-radius: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: #ffffff6b;
+    box-shadow: 1px 1px 0px 0px black;
+  }
+  &-title {
+    font-size: 1.2rem;
+    border-bottom: var(--border-b);
+    height: 70px;
+  }
+  &-span {
+    background-color: rgb(0 0 0 / 12%);
+    margin-right: 10px;
+    font-size: 20px;
+    color: rgb(255, 207, 68);
+    padding: 0px 10px;
+    border-radius: 5px;
+    padding-top: 9px;
+    padding-bottom: 4px;
+    box-shadow: 1px 1px 0px 0px black;
+  }
+  &-icon {
+    font-size: 18px;
+    //font-family: var(--price-font);
+    color: var(--price-color);
+    margin-top: 8px;
+    border-bottom: var(--border-b);
+    height: 48px;
+    padding-top: 5px;
+  }
+  &-price {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: var(--price-font);
+    color: var(--price-color);
+    margin-top: 8px;
+    border-bottom: var(--border-b);
+    height: 36px;
+  }
+  &-title-left {
+    font-size: 16px;
+    position: absolute;
+    left: 0px;
+    vertical-align: top;
+    margin-top: 6px;
+  }
+  &-title-right {
+    font-size: 16px;
+    position: absolute;
+    right: 0px;
+    letter-spacing: 0.2rem;
+    font-weight: bold;
+  }
+  &-button {
+    color: white;
+    background-color: #6200ee;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    user-select: none;
+    &-icon-right {
+      margin-top: 2px;
+      margin-left: 8px;
+      margin-right: 0px;
+      display: inline-block;
+      width: 18px;
+      height: 15px;
+      font-size: 18px;
+      vertical-align: top;
+    }
+    &:hover {
+      box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+        0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+    }
+    &:active {
+      box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+        0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+      background-color: #0000ff45;
+    }
+  }
+
+  &-header {
+    height: 46px;
+    position: relative;
+    border-bottom: var(--border-b);
+    margin-top: 8px;
+  }
+  &-photo {
+    margin-top: 10px;
+    padding: 15px;
+    height: 250px;
+    /* background */
+    background-image: url("https://hochiminhrental.com/UploadImages/Data/News/6880/can-ho-dich-vu-cho-thue-tai-de-tham-d1-928-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* https://lh3.googleusercontent.com/HB1uqtPFT86WBRXVedUcHeApUMIhIU42nc-Zm9rGDDWN9i1S2JqYhGs-xvkpUTbZajSx77Wn20Xj7uYZ6fD_9H6v-Xs2ceshUr5VcQ=w1064-v0 */
+  }
+  &-body {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &-line {
+      margin-top: 10px;
+    }
+    &-time {
+      background-color: rgba(0, 0, 0, 0.12);
+      color: #a78dcd;
+      margin-right: 10px;
+      padding: 0px 5px;
+      border-radius: 5px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      box-shadow: 1px 1px 0px 0px black;
+    }
+    & > div {
+      @media only screen and (max-width: 1024px) {
+        font-size: 14px;
+      }
+
+      @media only screen and (max-width: 768px) {
+        font-size: 9px;
+      }
+      //font-size: 0.6rem !important;
+    }
+  }
+  &:hover {
+    margin-bottom: 11px;
+    border-bottom: 2px solid orange;
+    position: relative;
+    top: -7px;
+  }
+}

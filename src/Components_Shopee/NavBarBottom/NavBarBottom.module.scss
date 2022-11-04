@@ -1,0 +1,119 @@
+.wrapper {
+  /* background: blueviolet; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 20;
+}
+.content {
+  background-color: #6201ee;
+  position: relative;
+  bottom: -4px;
+  height: 50px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+.center {
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.navIcon {
+  position: relative;
+  background-color: transparent;
+  width: 90px;
+  user-select: none;
+  &:hover {
+    background-color: #3e0292;
+    cursor: pointer;
+  }
+}
+.iconTop {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+.titleIcon {
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+}
+.sideBar,
+.sideBar-search {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* background: #00000085; */
+  width: 100%;
+  height: 96vh;
+  transform: translate(100%, 0);
+  /* transform: translate(0, 0); */
+  transition: transform 330ms ease-in-out;
+  display: flex;
+  z-index: 10;
+}
+.transleft {
+  transform: translate(0, 0);
+}
+.panel,
+.panel-search {
+  background-color: #33333d;
+  //background: var(--bg-color);
+  height: 100%;
+  width: 80%;
+  max-width: 400px;
+}
+
+.panel-search {
+  //background: var(--bg-color);
+  height: 100%;
+  width: 80%;
+  max-width: 400px;
+  background-image: url("https://uploads-ssl.webflow.com/5a9ee6416e90d20001b20038/62ee03d87fea4edf41018dcf_Rectangle%201%20(48).svg");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-size: cover;
+}
+
+.panelleft,
+.panelleft-search {
+  flex: auto;
+  background: rgb(0 0 0 / 60%);
+  height: 100%;
+}
+.titlepanel {
+  position: relative;
+  padding-left: 10px;
+  margin-bottom: 26px;
+  color: var(--title-color2);
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 15px;
+  /* insetshadow */
+  /* font-size: 25px;
+  text-shadow: 2px 1px 6px #000000; */
+}
+.close {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-size: 30px;
+  color: gray;
+  border-radius: 6px;
+  user-select: none;
+  &:hover {
+    color: rgb(171, 171, 171);
+    cursor: pointer;
+  }
+}

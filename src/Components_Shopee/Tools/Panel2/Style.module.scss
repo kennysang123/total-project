@@ -1,0 +1,12 @@
+.none {
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--price-color);
+    padding-right: 5px;
+  }
+}
+.colortext {
+  color: var(--text-color);
+  //background-color: var(--card-color);
+}
