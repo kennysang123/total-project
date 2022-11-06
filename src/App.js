@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import GlobalShopeeStyles from "./Components_Shopee/GlobalShopeeStyle";
@@ -11,14 +10,22 @@ import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import NavBarBottom from "./Components_Shopee/NavBarBottom";
 import Themes from "./pages/Themes";
+import UongThuoc from "./CompDrink/UongThuoc";
+import SinglePost from "./pages/SinglePost";
 
 function App() {
+  /* 
+  <Route path="/" element={<UongThuoc />} />
+  <Header />
+  
+  */
   return (
     <Router>
-      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/post" element={<SinglePost />} />
+
         <Route path="/product/:productId" element={<Product />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/themes" element={<Themes />} />
