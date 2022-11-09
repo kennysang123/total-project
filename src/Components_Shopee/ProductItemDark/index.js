@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import CurrencyFormat from "react-currency-format";
 import classNames from "classnames/bind";
 import styles from "./Style.module.scss";
+import PostModal from "../PostModal";
 const cx = classNames.bind(styles);
 
 export default function ProductItemDark({ props }) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  function handleShowModal() {
+    setIsOpenModal(true);
+  }
   return (
     <>
       <div className={cx("col-md-4")}>
+        <div>
+          {isOpenModal && (
+            <PostModal props={{ openM: setIsOpenModal, data: props.Code }} />
+          )}
+        </div>
         <div className={cx("card")}>
           <div className={cx("card-photo", "my-2")}></div>
           <div className={cx("card-title")}>
@@ -40,7 +50,7 @@ export default function ProductItemDark({ props }) {
           <div className={cx("card-header")}>
             <div className={cx("card-title-left")}>Description:</div>
             <div className={cx("card-title-right")}>
-              <button className={cx("card-button")}>
+              <button className={cx("card-button")} onClick={handleShowModal}>
                 SEE DETAIL
                 <span
                   className={cx("card-button-icon-right", "material-icons")}

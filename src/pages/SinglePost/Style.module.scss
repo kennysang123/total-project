@@ -1,0 +1,8 @@
+@import "../../Components_Shopee/GlobalShopeeStyle/mixin";
+.post-title {
+  & h1 {
+    margin: 31px 0px;
+    font-size: 1.2rem;
+    @include --card;
+  }
+}

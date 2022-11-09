@@ -1,0 +1,18 @@
+@import "../GlobalShopeeStyle/mixin";
+
+.info-wrapper {
+  @include --card;
+}
+.info-wrapper-list {
+  &-value {
+    color: #ffc107;
+  }
+  & ol {
+    list-style-type: "";
+    padding-left: 1rem;
+  }
+  & li {
+    border-bottom: 1px solid #4e4e4e;
+    padding: 4px 0px;
+  }
+}

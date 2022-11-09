@@ -1,5 +1,9 @@
 import React from "react";
 import SlidePhotoPost from "../../Components_Shopee/SlidePhotoPost";
+import classNames from "classnames/bind";
+import styles from "./Style.module.scss";
+import PostInfo from "../../Components_Shopee/PostInfo";
+const cx = classNames.bind(styles);
 
 export default function SinglePost() {
   /* 
@@ -60,14 +64,33 @@ export default function SinglePost() {
     nameStart: [],
     nameEnd: [],
   };
+  const exstr = () => {
+    let str = "";
+    for (let i = 0; i < 100; i++) {
+      str = str + "Day la mot noi dung mau. ";
+    }
+    return str;
+  };
+  function handleClose() {}
   return (
     <>
       <div className="container">
+        <div className={cx("row")}>
+          <div className={cx("post-title")}>
+            <h1>
+              D2N0006 - Apartment Studio 1 Bedroom 1 Bathroom 25 Sqm in District
+              2 HCMC - [{" "}
+              <a href="http://google.com">Copy link of this post to Share</a> ]
+            </h1>
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-8">
             <SlidePhotoPost />
           </div>
-          <div className="col-md-4">info</div>
+          <div className="col-md-4">
+            <PostInfo />
+          </div>
         </div>
         <div className="row">
           <h1>Hinh Chi tiet</h1>
