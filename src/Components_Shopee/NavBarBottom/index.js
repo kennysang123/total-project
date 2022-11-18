@@ -99,7 +99,7 @@ export default function NavBarBottom() {
           <div className="row">
             <div className={cx("center")}>
               <div className={cx("content")}>
-                <HomeIcon onClick={handleHomeIconClick} />
+                {/* <HomeIcon onClick={handleHomeIconClick} /> */}
                 <ApartmentIcon onClick={handleApartmentIconClick} />
                 <div className={cx("navIcon")} onClick={handleSearchToggle}>
                   <div className={cx("iconTop", "material-icons")}>search</div>

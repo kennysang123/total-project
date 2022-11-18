@@ -1,0 +1,21 @@
+$bg1: "https://i.ibb.co/svQ3JXS/together-forever-2-wallpaper-1920x1080.jpg";
+$bg1: "https://i.ibb.co/n01yLBZ/bride-and-groom-wallpaper-1920x1080.jpg";
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  margin: auto auto;
+  position: relative;
+  .content {
+    background-image: url($bg1);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 100vw;
+    height: 100vh;
+  }
+}

@@ -1,0 +1,18 @@
+.btnHover {
+  background-color: rgb(0, 166, 255);
+  border: 1px solid transparent;
+  color: white;
+  box-shadow: 0px 0px 2px 0px black;
+  user-select: none;
+  cursor: pointer;
+}
+.btnActive {
+  background-color: rgb(0, 150, 255);
+}
+.btnSize {
+  position: relative;
+  border: 1px solid;
+  padding: 9px 10px;
+  padding-right: 30px;
+  border-radius: 3px;
+}

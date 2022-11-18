@@ -1,0 +1,20 @@
+@import "../GlobalShopeeStyle/mixin";
+
+.wrapper {
+  width: 100%;
+  /* background-color: red; */
+  /* padding: 0px 0px; */
+  margin-top: 20px;
+  &-content {
+    @include --card;
+    &-code {
+      @include --bag;
+    }
+    & h1 {
+      font-size: calc(1rem + 1.5vw);
+      color: #bf84ff;
+      font-weight: 100;
+      font-size: 18px;
+    }
+  }
+}

@@ -4,3 +4,18 @@
   padding: 10px;
   margin-bottom: 15px;
 }
+@mixin --bag {
+  background-color: rgba(0, 0, 0, 0.12);
+  margin-right: 10px;
+  font-size: 20px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  padding-top: 9px;
+  padding-bottom: 4px;
+  box-shadow: 1px 1px 0px 0px black;
+  margin-top: 10px;
+}
+@mixin --titleH2 {
+  color: rgb(13, 110, 253);
+  border-bottom: 1px solid rgb(157 157 157 / 20%);
+}

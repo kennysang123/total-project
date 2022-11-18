@@ -1,0 +1,51 @@
+.tooltipx {
+  position: absolute;
+  background: black;
+  /* display: inline-block; */
+  width: 180px;
+  /* height: 41px; */
+  top: -50px;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 1px 1px 3px 3px black;
+}
+.icon {
+  height: 100%;
+  width: 43px;
+  color: rgb(255, 207, 68);
+  /* background-color: #a78dcd; */
+  position: relative;
+  & span {
+    /* color: red; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+  }
+  &-content {
+    /* color: red; */
+    color: rgb(255, 207, 68);
+    position: absolute;
+    top: 50%;
+    /* right: 10px; */
+    transform: translateY(-50%);
+    left: 43px;
+    font-size: 20px;
+  }
+}
+.icon-wrapper {
+  height: 42px;
+  width: 66px;
+  margin-top: 15px;
+  position: relative;
+  cursor: pointer;
+  /*  */
+  background-color: rgba(0, 0, 0, 0.12);
+  margin-right: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px 0px black;
+}

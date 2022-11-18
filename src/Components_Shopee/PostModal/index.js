@@ -3,6 +3,14 @@ import SlidePhotoPost from "../SlidePhotoPost";
 import PostInfo from "../PostInfo";
 import classNames from "classnames/bind";
 import styles from "./S.module.scss";
+import PostTitle from "../PostTitle";
+import PostPhotoMain from "../PostPhotoMain";
+import PostDetails from "../PostDetails";
+import PostUtilities from "../PostUtilities";
+import PostUtilitiesAround from "../PostUtilitiesAround";
+import PostFurnitures from "../PostFurnitures";
+import PostPhotoList from "../PostPhotoList";
+import { CloseSvg } from "../IconSVG";
 const cx = classNames.bind(styles);
 
 export default function PostModal(props) {
@@ -28,15 +36,18 @@ export default function PostModal(props) {
           Details: Apartment{" "}
           <span className={cx("modal-title-code")}>{props.props.data}</span>
         </h2>
-        <div className={cx("modal-close")}>
-          <span className="material-icons" onClick={handleClose}>
-            close
-          </span>
+        <div className={cx("modal-close")} onClick={handleClose}>
+          {/* <span className="material-icons">close</span> */}
+          <CloseSvg />
         </div>
         <div className={cx("modal-content")}>
-          <SlidePhotoPost />
-          <PostInfo />
-          <div>{strX(props.props.data)}</div>
+          <PostTitle />
+          <PostPhotoMain />
+          <PostDetails />
+          <PostUtilities />
+          <PostUtilitiesAround />
+          <PostFurnitures />
+          <PostPhotoList />
         </div>
       </div>
     </>

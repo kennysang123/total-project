@@ -1,0 +1,55 @@
+$photo: "https://1.bigdata-vn.com/wp-content/uploads/2021/12/1640841264_102_Hinh-Nen-Girl-Xinh-Full-HD-Cho-Laptop-Va-May.jpg";
+$photo: "https://docs.google.com/uc?export=download&id=19YeYUQNGvxXzUoMORis_rux6fnfRd4cY";
+$width: 415px;
+body {
+  user-select: none;
+}
+.containerX {
+  max-width: $width;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ced0d4;
+  height: auto;
+  position: relative;
+}
+.footer {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  left: 0;
+
+  z-index: 100;
+  /* opacity: 0.8; */
+
+  /* background-color: wheat; */
+  .popup {
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: purple;
+    display: flex;
+    justify-content: space-around;
+  }
+  .search {
+    padding: 5px;
+    border: 1px solid transparent;
+    background-color: limegreen;
+    border-radius: 10px;
+  }
+  .btnGroup {
+    background-color: yellow;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .btnx {
+    background-color: gray;
+    padding: 10px;
+    border-radius: 999px;
+    margin-left: 20px;
+  }
+}

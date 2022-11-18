@@ -12,6 +12,8 @@ import NavBarBottom from "./Components_Shopee/NavBarBottom";
 import Themes from "./pages/Themes";
 import UongThuoc from "./CompDrink/UongThuoc";
 import SinglePost from "./pages/SinglePost";
+import MobileOnly from "./pages/MobileOnly";
+import NgocThao from "./Components_Shopee/NgocThao";
 
 function App() {
   /* 
@@ -20,19 +22,24 @@ function App() {
   
   */
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/post" element={<SinglePost />} />
+    <>
+      <Router>
+        <Routes>
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Product />} />
+          <Route path="/ngocthao" element={<NgocThao />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/post" element={<SinglePost />} />
+          <Route path="/mobi" element={<MobileOnly />} />
 
-        <Route path="/product/:productId" element={<Product />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/themes" element={<Themes />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <NavBarBottom />
-    </Router>
+          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/themes" element={<Themes />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* <NavBarBottom /> */}
+      </Router>
+    </>
   );
 }
 

@@ -1,0 +1,10 @@
+.labelx {
+  cursor: pointer;
+}
+.wrapper {
+  /* border: 1px solid blue; */
+  width: 50%;
+}
+.wrapper + .wrapper {
+  /* margin-left: 20px; */
+}
