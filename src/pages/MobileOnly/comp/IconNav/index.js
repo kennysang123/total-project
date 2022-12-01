@@ -7,7 +7,7 @@ export default function IconNav({ className, ...buttonProps }) {
   function getIcon(namex) {
     const propsPass = namex;
     const name = namex.props.name;
-    console.log(name);
+    //console.log(name);
     switch (name) {
       case "search":
         return (
@@ -41,6 +41,18 @@ export default function IconNav({ className, ...buttonProps }) {
                 <span className="material-icons">menu</span>
               </div>
               <div className={cx("title")}>Menu</div>
+            </div>
+          </>
+        );
+        break;
+      case "favorite":
+        return (
+          <>
+            <div className={cx("wrapper")} {...propsPass}>
+              <div className={cx("icon")}>
+                <span className="material-icons">favorite</span>
+              </div>
+              <div className={cx("title")}>Favorite</div>
             </div>
           </>
         );

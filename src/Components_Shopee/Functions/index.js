@@ -43,12 +43,14 @@ export class FuncX1 {
       })
       .catch((err) => console.log("Nhan that bai, loi: ", err));
   }
-  async SelectData(url, data) {
+  async SelectData(url, data, limitSql, pageNumber) {
     const urlsub = url;
-    console.log(urlsub);
+    //console.log(urlsub);
     let datasend = {
       Code: JSON.stringify(data),
       Method: "GET",
+      limitSql: limitSql,
+      pageNumber: pageNumber,
       PrivateKey: "home",
     };
     return await fetch(urlsub, {
@@ -59,7 +61,7 @@ export class FuncX1 {
       .then((json) => {
         return json;
       })
-      .catch((err) => console.log("Nhan that bai, loi: ", err));
+      .catch((err) => console.log("Client nhan that bai: ma loi: ", err));
   }
 }
 

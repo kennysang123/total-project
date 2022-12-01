@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
 import PopUp from "../PopUp";
 import CurrencyFormat from "react-currency-format";
 import UseMod, { AlertTip } from "../UseMod";
+import Global from "../../../../components_global/Global";
+import GlobalClass from "../../../../components_global/GlobalClass";
+
 const cx = classNames.bind(styles);
 
+let GLOBAL_ALERT_CONTENT = "Link share has copied";
 export default function PostThumnail({ ...props }) {
-  const data = props.props;
+  const data = props.props.data;
 
   const Address = data.Address;
   const Area = data.Area;
@@ -36,7 +40,31 @@ export default function PostThumnail({ ...props }) {
   const Phone2Name = data.Phone2Name;
   const Phone3 = data.Phone3;
   const Phone3Name = data.Phone3Name;
-  const PhotoPath = data.PhotoPath;
+  let PhotoPath = data.PhotoPath;
+  function PhotoPathFunc(path) {
+    let json = JSON.parse(path);
+    let host = Global("host");
+    let thumnail = host + json.photo.thumnail;
+
+    let listNew = [];
+    let photoList = JSON.parse(path).photo.photolist;
+    for (let list of photoList) {
+      //console.log(list);
+      listNew.push(host + list);
+    }
+
+    let result = {
+      thumnail: thumnail,
+      photoList: listNew,
+    };
+
+    return result;
+  }
+  PhotoPath = PhotoPathFunc(PhotoPath);
+
+  //let link1 = new GlobalClass().hostLink();
+
+  //console.log(PhotoPath);
   const PhotoThumbnail = data.PhotoThumbnail;
   const PostBySaler = data.PostBySaler;
   const PostContent = data.PostContent;
@@ -60,6 +88,9 @@ export default function PostThumnail({ ...props }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
   const [isArlet, setIsArlert] = useState(false);
+  const [iconChange, setIconChange] = useState("favorite_border");
+  const [favoriteDis, setFavoriteDis] = useState("favorite");
+
   function handleShowModal() {
     setIsOpenModal(true);
   }
@@ -71,13 +102,65 @@ export default function PostThumnail({ ...props }) {
   setSroll();
 
   function handleCopy() {
+    GLOBAL_ALERT_CONTENT = "Links share has copied";
     setIsArlert(true);
-    console.log("copyM");
   }
+
+  function handleAddFavorite() {
+    const item = localStorage.getItem("favorite");
+    let item2 = [];
+    if (item) {
+      item2 = JSON.parse(item);
+    }
+    /* kiem tra da co item chua */
+    const index = item2.indexOf(Code);
+    if (index > -1) {
+      console.log("da co roi");
+      GLOBAL_ALERT_CONTENT = "This apartment has added to Favorite";
+      console.log(GLOBAL_ALERT_CONTENT);
+      setIsArlert(true);
+    } else {
+      const item3 = [...item2, Code];
+      localStorage.setItem("favorite", JSON.stringify(item3));
+      //console.log("add item");
+      handleChangeIconFavorite();
+    }
+  }
+  function handleChangeIconFavorite() {
+    //console.log("Post Thumnail:", props.props.isRefresh);
+    const item = localStorage.getItem("favorite");
+    let index;
+    if (item) {
+      const item2 = JSON.parse(item);
+      index = item.indexOf(Code);
+    }
+    if (index > -1) {
+      //return "done";
+      setIconChange("done");
+      setFavoriteDis("favorite-dis");
+    } else {
+      setIconChange("favorite_border");
+      setFavoriteDis("favorite");
+      //return "favorite_border";
+    }
+  }
+  useEffect(() => {
+    handleChangeIconFavorite();
+  }, []);
 
   return (
     <>
-      {isArlet ? <AlertTip props={{ setA: setIsArlert }} /> : ""}
+      {isArlet ? (
+        <AlertTip
+          props={{
+            content: GLOBAL_ALERT_CONTENT,
+            setIsArlert: setIsArlert,
+            isArlet: isArlet,
+          }}
+        />
+      ) : (
+        ""
+      )}
       {isOpenModal && (
         <PopUp
           props={{
@@ -85,21 +168,34 @@ export default function PostThumnail({ ...props }) {
             scrollX: setIsScroll,
             copyM: handleCopy,
             data: data,
+            photo: PhotoPath,
           }}
         />
       )}
-      <div className={cx("post")}>
+      <div className={cx("post", "postob")}>
         <div className={cx("post-head")}>
           <div className={cx("avatar")}>
             <div className={cx("photo")}></div>
-            <div className={cx("title")}>{Code} - Ho Chi Minh City</div>
-            <div className={cx("time")}>• District 2 • 22/02/2022</div>
-            <div className={cx("close")}>
-              <span className="material-icons">favorite_border</span> 1k2
+            <div className={cx("title")}>
+              <span>{Code}</span> - <span className={cx("city")}>{City}</span>
+            </div>
+            <div className={cx("time")}>
+              • {Dist} • {LatestUpdate}
+            </div>
+            <div className={cx(favoriteDis)} onClick={handleAddFavorite}>
+              <span className={cx("done", "material-icons")}>{iconChange}</span>
+            </div>
+            <div className={cx("upload")}>
+              <span className={cx("done", "material-icons")}>settings</span>
             </div>
           </div>
         </div>
-        <div className={cx("post-mid")}>xxxx</div>
+        <div
+          className={cx("post-mid")}
+          style={{ backgroundImage: `url(${PhotoPath.thumnail})` }}
+        >
+          <div className={cx("status")}>Sold</div>
+        </div>
         <div className={cx("post-bottom")}>
           <div className={cx("box1")}>
             <div className={cx("title")}>
@@ -116,11 +212,12 @@ export default function PostThumnail({ ...props }) {
             </div>
           </div>
           <div className={cx("cap")}>
-            <b>2</b> Bed • <b>2</b> Bath • <b>32</b> Sqm
+            <b>{Bedroom}</b> Bed • <b>{Bathroom}</b> Bath • <b>{Area}</b> Sqm •
+            Available: <b>{Duration}</b> days left
           </div>
-          <div className={cx("cap")}>
-            Deposit: <b>1</b> month(s) • Available: <b>2</b> days left
-          </div>
+          {/* <div className={cx("cap")}>
+            • Available: <b>2</b> days left
+          </div> */}
           <div className={cx("linkShare")}>
             <div className={cx("link")}>http://rentvn.top/product/D2N0005</div>
             <div className={cx("copy")} onClick={handleCopy}>

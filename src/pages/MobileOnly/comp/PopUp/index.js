@@ -9,7 +9,8 @@ const cx = classNames.bind(styles);
 
 export default function PopUp({ ...props }) {
   const data = props.props;
-  console.log("popup:", data);
+  //console.log("popup:", data);
+  //console.log(props.props);
   props.props.scrollX(true);
   const handleClose = () => {
     props.props.openM(false);
@@ -29,7 +30,7 @@ export default function PopUp({ ...props }) {
     <>
       <div className={cx("mainphoto")}>
         <div className={cx("mainphoto-wrapper")}>
-          <img src="https://docs.google.com/uc?export=download&id=1ULbI1L4_v7G8DY32o_JQUoy83-3d8n1L"></img>
+          <img src={props.props.photo.thumnail}></img>
         </div>
       </div>
     </>
@@ -75,7 +76,13 @@ export default function PopUp({ ...props }) {
         </div>
         <div className={cx("share-content")}>
           <div className={cx("linkShare")}>
-            <div className={cx("link")}>http://rentvn.top/product/D2N0005</div>
+            <div className={cx("link")}>
+              http://
+              <span style={{ color: "black", fontWeight: "bold" }}>
+                vngate.top
+              </span>
+              /?id=D2N0005
+            </div>
             <div className={cx("copy")} onClick={props.props.copyM}>
               <span className="material-icons" style={{ fontSize: "12px" }}>
                 share
@@ -87,14 +94,32 @@ export default function PopUp({ ...props }) {
       </div>
     </>
   );
+  const Note = () => {
+    const content = `
+    
+    ✅ Cửa sổ, ban công dài rộng thông thoáng.
+    ✅ Full nội thất: giường, tủ, máy lạnh, tủ lạnh, kệ bếp, máy giặt, bàn ghế làm việc, chăn dra.
+    🌈 Nhà mới, nội thất mới.`;
+    return (
+      <>
+        <div className={cx("wrapperP")}>
+          <div className={cx("note")}>
+            <div className={cx("title")}>Note</div>
+            <div className={cx("content")}>
+              <p>Large windows and spacious balcony.</p>
+              <p>New house, new furniture.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
   const Price = () => (
     <>
       <div className={cx("wrapperP")}>
-        <div className={cx("title-second")}>
-          <h2>Price</h2>
-        </div>
-        <div className={cx("price-content")}>
-          <div className={cx("price")}>
+        <div className={cx("price")}>
+          <div className={cx("value")}>
+            <span className={cx("label")}>Price</span>{" "}
             <CurrencyFormat
               value={data.data.Vnd}
               displayType={"text"}
@@ -244,27 +269,10 @@ export default function PopUp({ ...props }) {
       },
     ];
     const Utilities = TienIch;
-    const isUtilities = {
-      AllowPets: true,
-      Balcony: true,
-      Bathtub: true,
-      Elevator: false,
-      InternetWifi: false,
-      Parking: false,
-      SecurityCamera: false,
-      WashingMachine: false,
-      SwimmingPool: false,
-      Rooftop: false,
-      Jacuzzi: false,
-      Garage: true,
-      Garden: false,
-      Lobby: false,
-      SaunaRoom: false,
-      Windown: false,
-      NiceView: false,
-      Gym: false,
-      BBQ: true,
-    };
+    let is = props.props.data.Utilities;
+    is = JSON.parse(is);
+    //console.log("is", is);
+    const isUtilities = is;
     const mapUtilities = Utilities.map((value, index) => (
       <li className="col-4sss" key={v4()} style={{ listStyleType: "none" }}>
         <span
@@ -352,15 +360,10 @@ export default function PopUp({ ...props }) {
         icon: "local_grocery_store",
       },
     ];
-    const isUtilitiesAround = {
-      ATM: true,
-      Cannal: true,
-      Hospital: true,
-      Ministop: false,
-      Park: false,
-      SportCenter: true,
-      SuperMarket: true,
-    };
+    let is = props.props.data.UtilitiesLink;
+    is = JSON.parse(is);
+    console.log(123, is);
+    const isUtilitiesAround = is;
     const mapUtilitiesAround = UtilitiesAround.map((value, index) => (
       <li className="col-4xx" key={v4()} style={{ listStyleType: "none" }}>
         <span
@@ -526,6 +529,7 @@ export default function PopUp({ ...props }) {
         icon: "desk",
       },
     ];
+
     const isFurnitures = {
       AirConditioner: true,
       Bed: true,
@@ -598,20 +602,9 @@ export default function PopUp({ ...props }) {
   };
   const PhotoList = () => {
     const photoList = {
-      link: [
-        "https://docs.google.com/uc?export=download&id=19YeYUQNGvxXzUoMORis_rux6fnfRd4cY",
-        "https://docs.google.com/uc?export=download&id=1y8S8c_lss9EKGchYNZF1US3T4E3cOpm4",
-        "https://docs.google.com/uc?export=download&id=1BAClgAE-Yn0ky9s2fpag8ULI_8XzX4qR",
-        "https://docs.google.com/uc?export=download&id=1f_KAixEdMOJt9uet-QYz9aInkkagHUYP",
-        "https://docs.google.com/uc?export=download&id=1vSFSQXTDX_EXNnm9eeS-NbBkAnPmP2DP",
-        "https://docs.google.com/uc?export=download&id=1jxIQY7iyg1grWi_K8xNcSQnWaudFY5mG",
-        "https://docs.google.com/uc?export=download&id=1yh6TY7GrcXA19ipMvSTjwzhK3hiARM2x",
-        "https://docs.google.com/uc?export=download&id=1RloqIuGwPxogP3xK5g94NsiEy9akw82z",
-        "https://docs.google.com/uc?export=download&id=1ULbI1L4_v7G8DY32o_JQUoy83-3d8n1L",
-        "https://docs.google.com/uc?export=download&id=1VFsz_yp2xmqdrPB5eJ0anpfOc-SKciCd",
-      ],
+      link: props.props.photo.photoList,
     };
-    console.log(photoList);
+    //console.log("photolist:", photoList);
     const mapx = photoList.link.map((value, index) => (
       <li className={"col222"} key={v4()} style={{ listStyleType: "none" }}>
         <img src={value}></img>
@@ -653,11 +646,16 @@ export default function PopUp({ ...props }) {
   return (
     <>
       <div className={cx("wrapper")} style={{ width: wid }}>
-        <div className={cx("header")} onClick={handleClose}></div>
+        <div className={cx("header")} onClick={handleClose}>
+          <p>
+            Go to App <span style={{ fontWeight: "bold" }}>vngate.top</span> and
+            search ID:{" "}
+            <span style={{ fontWeight: "bold" }}>{props.props.data.Code}</span>
+          </p>
+        </div>
         <div className={cx("windows")}>
           {title()}
           {mainPhoto()}
-          {Share()}
           {Price()}
           {details()}
           {Utilities()}

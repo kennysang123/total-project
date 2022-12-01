@@ -1,0 +1,33 @@
+.item + .item {
+  margin-top: 10px;
+}
+.item {
+  border: 1px solid #b2bec3;
+  border-radius: 5px;
+  /* padding: 4px; */
+  display: flex;
+  align-items: center;
+  .text {
+    width: 85%;
+    border-right: 1px solid #b2bec3;
+    /* height: 30px; */
+    padding: 5px;
+    &:hover {
+      cursor: pointer;
+      user-select: none;
+      background-color: #0984e3;
+      color: white;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+  .icon {
+    display: flex;
+    margin: 0px auto;
+    &:hover {
+      color: gray;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+}

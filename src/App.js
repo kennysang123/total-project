@@ -14,20 +14,25 @@ import UongThuoc from "./CompDrink/UongThuoc";
 import SinglePost from "./pages/SinglePost";
 import MobileOnly from "./pages/MobileOnly";
 import NgocThao from "./Components_Shopee/NgocThao";
+import Reducer from "./pages/Reducer";
+import ExFull from "./pages/ExFull";
+import Admin from "./pages/Admin";
 
 function App() {
-  /* 
-  <Route path="/" element={<UongThuoc />} />
-  <Header />
-  
-  */
+  const nav = {
+    home: { path: "/", comp: <MobileOnly /> },
+    mobi: { path: "/", comp: <MobileOnly /> },
+  };
   return (
     <>
       <Router>
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/" element={<Product />} />
-          <Route path="/ngocthao" element={<NgocThao />} />
+          {/* <Route path="/" element={<MobileOnly />} /> */}
+          <Route path={nav.home.path} element={nav.home.comp} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/exfull" element={<ExFull />} />
+          <Route path="/reducer" element={<Reducer />} />
           <Route path="/product" element={<Product />} />
           <Route path="/post" element={<SinglePost />} />
           <Route path="/mobi" element={<MobileOnly />} />

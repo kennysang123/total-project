@@ -1,3 +1,4 @@
+@import "../../../../Components_Shopee/GlobalShopeeStyle/extend";
 @keyframes moveleft {
   0% {
     left: 100vh;
@@ -6,6 +7,31 @@
     left: 0vh;
   }
 }
+
+.panel-header {
+  height: 58px;
+  /* border: 1px solid; */
+  position: relative;
+  background-color: #efefef;
+  margin-bottom: 10px;
+  .title {
+    /* color: red;
+    background-color: yellow; */
+    margin-left: 10px;
+    padding-top: 10px;
+  }
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: gray;
+    /* border: 1px solid; */
+    &:hover {
+      @extend .close-hover;
+    }
+  }
+}
+
 .wrapper {
   /* annimation */
   animation-name: moveleft;
@@ -22,21 +48,18 @@
   z-index: 49;
   .panel-hide {
     background-color: rgba(0 0 0/0.5);
-    width: 30%;
+    width: 20%;
     height: 100%;
     flex-grow: 1;
   }
   .panel {
     background-color: white;
-    width: 70%;
-    max-width: 300px;
+    width: 80%;
+    max-width: 400px;
     height: 100%;
     flex-shrink: 0;
     color: black;
 
-    .title {
-      margin-left: 10px;
-    }
     .content {
       /* background-color: red; */
       /* display: flex; */

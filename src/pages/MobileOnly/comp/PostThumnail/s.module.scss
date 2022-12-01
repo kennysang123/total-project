@@ -8,22 +8,60 @@ $photo: "https://docs.google.com/uc?export=download&id=19YeYUQNGvxXzUoMORis_rux6
   height: 490px;
   width: 100%;
   background-color: white;
+  &-mid {
+    .status {
+      color: rgb(235 255 68);
+      background-color: rgba(0, 0, 0, 0.29);
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      padding: 5px;
+      padding-right: 12px;
+      padding-left: 12px;
+      border-radius: 5px;
+    }
+  }
   &-head {
     /* background-color: yellow; */
     position: absolute;
     width: 100%;
     height: 60px;
     /* border: 1px solid; */
-    .close {
+    .favorite {
       color: gray;
       position: absolute;
       right: 20px;
       top: 15px;
+      user-select: none;
+      cursor: pointer;
+      span {
+        &:hover {
+          color: #ce00ce;
+        }
+      }
+    }
+    .favorite-dis {
+      color: gray;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      user-select: none;
     }
     .avatar {
       /* border: 1px solid; */
       width: 300px;
       height: 60px;
+      .upload {
+        position: absolute;
+        right: 66px;
+        top: 15px;
+        color: rgb(157, 157, 157);
+        &:hover {
+          cursor: pointer;
+          user-select: none;
+          color: gray;
+        }
+      }
       .photo {
         background-color: red;
         position: absolute;
@@ -41,6 +79,9 @@ $photo: "https://docs.google.com/uc?export=download&id=19YeYUQNGvxXzUoMORis_rux6
         position: absolute;
         left: 65px;
         top: 10px;
+        .city {
+          color: #6c757d;
+        }
       }
       .time {
         color: gray;

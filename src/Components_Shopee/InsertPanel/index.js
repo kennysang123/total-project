@@ -27,6 +27,7 @@ export default function InsertPanel() {
   let url = "https://jsonplaceholder.typicode.com/posts";
 
   url = "http://vd2.epizy.com/serverphp/api/v1/product/";
+  url = "http://linkngan.atwebpages.com/serverphp-min/api/v1/product/";
 
   async function PostData(data) {
     await fetch(url, {

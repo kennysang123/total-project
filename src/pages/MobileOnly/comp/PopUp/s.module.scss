@@ -29,10 +29,11 @@
     display: flex;
     .link {
       /* cut words */
-      width: 200px;
+      width: 220px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      color: rgb(120, 120, 120);
     }
     .copy {
       color: rgb(88, 88, 88);
@@ -54,11 +55,45 @@
     }
   }
 }
+.note {
+  border: 1px solid gray;
+  margin: 10px;
+  padding: 10px;
+  > .title {
+    font-weight: bold;
+  }
+  > .content > p {
+    margin-bottom: 10px;
+    line-height: 20px;
+  }
+}
+.price {
+  border: 1px solid rgb(230, 230, 230);
+  margin: 10px;
+  position: relative;
+  height: 50px;
+  .label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .value {
+    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #10a19d;
+    color: white;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+  }
+}
 .price-content {
   margin-left: 10px;
   position: relative;
   height: 50px;
-  .price {
+  .pricex {
     position: absolute;
     right: 30px;
     /* top: -50px; */
@@ -117,6 +152,12 @@
     /* background-color: blue; */
     height: 40px;
     flex-shrink: 0;
+    > p {
+      font-size: 18px;
+      margin-left: 20px;
+      margin-top: 8px;
+      color: #10a19d;
+    }
   }
   .windows {
     /* box-shadow: 0px 0px 0px 2px rgb(172, 172, 172); */
