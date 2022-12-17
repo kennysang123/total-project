@@ -1,0 +1,97 @@
+.BDS_TWITTER {
+  background-color: gray;
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 200vh;
+  .searchNull {
+    color: white;
+    margin: 10px;
+    width: 140px;
+  }
+}
+.footer {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  left: 0;
+  z-index: 100;
+
+  .IconNav {
+    /* background-color: red; */
+    position: relative;
+    width: 70px;
+    user-select: none;
+    cursor: pointer;
+    color: white;
+
+    &:hover {
+      background-color: rgb(82, 0, 82);
+      border-radius: 10px;
+    }
+    .icon {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 5px;
+    }
+    .title {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      width: 79px;
+      /* background: red; */
+      text-align: center;
+    }
+  }
+
+  .logo {
+    color: white;
+    .tit1 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .tit2 {
+      font-size: 11px;
+      margin-top: -5px;
+      margin-left: 1px;
+    }
+  }
+
+  /* opacity: 0.8; */
+
+  /* background-color: wheat; */
+  .popup {
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: purple;
+    display: flex;
+    justify-content: space-around;
+  }
+  .search {
+    padding: 5px;
+    border: 1px solid transparent;
+    background-color: limegreen;
+    border-radius: 10px;
+  }
+  .btnGroup {
+    background-color: yellow;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .btnx {
+    background-color: gray;
+    padding: 10px;
+    border-radius: 999px;
+    margin-left: 20px;
+  }
+}

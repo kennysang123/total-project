@@ -1,0 +1,14 @@
+.wrapper {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3%;
+  z-index: 110;
+  .content {
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: aliceblue;
+    /* box-shadow: 0px 0px 5px 2px #0dcaf0; */
+  }
+}

@@ -148,8 +148,76 @@ export default function PostThumnail({ ...props }) {
     handleChangeIconFavorite();
   }, []);
 
+  const dateAvailable = () => {
+    return (
+      <>
+        <div className={cx("date-wrapper")}>
+          <div className={cx("headerd")}>
+            <h4>
+              <b>Setting</b>
+            </h4>
+            <div className={cx("iconClose")}>
+              <span className="material-icons">clear</span>
+            </div>
+          </div>
+          <div className={cx("contentd")}>
+            <div className="container">
+              <div className="row">
+                <div className="col-6">Choose expired date:</div>
+                <div className="col-6">
+                  <input
+                    type="date"
+                    id="start"
+                    name="trip-start"
+                    min="2022-11-22"
+                    max="2030-12-31"
+                  ></input>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6"></div>
+                <div className="col-6">
+                  <button className="btn btn-outline-danger">Accept</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p></p>
+        </div>
+      </>
+    );
+  };
+
+  const dateCal = () => {
+    const d = new GlobalClass();
+    const re = d.dateCal(Duration);
+    //console.log(re);
+    return re.days;
+  };
+
+  const display = {
+    display: dateCal() < 0 ? "block" : "block",
+  };
+
+  const copyright = () => {
+    return (
+      <>
+        <div className={cx("postBottom2")}>
+          <p>
+            (c) <b>vngate.top</b>{" "}
+            <span>
+              {" "}
+              - Details search ID: <b>{Code}</b>
+            </span>
+          </p>
+        </div>
+      </>
+    );
+  };
   return (
     <>
+      {/* {dateAvailable()} */}
       {isArlet ? (
         <AlertTip
           props={{
@@ -169,19 +237,18 @@ export default function PostThumnail({ ...props }) {
             copyM: handleCopy,
             data: data,
             photo: PhotoPath,
+            copyright: <copyright />,
           }}
         />
       )}
-      <div className={cx("post", "postob")}>
+      <div className={cx("post", "postob")} style={{ ...display }}>
         <div className={cx("post-head")}>
           <div className={cx("avatar")}>
             <div className={cx("photo")}></div>
             <div className={cx("title")}>
               <span>{Code}</span> - <span className={cx("city")}>{City}</span>
             </div>
-            <div className={cx("time")}>
-              • {Dist} • {LatestUpdate}
-            </div>
+            <div className={cx("time")}>• {LatestUpdate}</div>
             <div className={cx(favoriteDis)} onClick={handleAddFavorite}>
               <span className={cx("done", "material-icons")}>{iconChange}</span>
             </div>
@@ -194,15 +261,15 @@ export default function PostThumnail({ ...props }) {
           className={cx("post-mid")}
           style={{ backgroundImage: `url(${PhotoPath.thumnail})` }}
         >
-          <div className={cx("status")}>Sold</div>
+          <div className={cx("status")}>{dateCal() > 0 ? "Full" : "Empty"}</div>
         </div>
         <div className={cx("post-bottom")}>
-          <div className={cx("box1")}>
-            <div className={cx("title")}>
-              {Code} - {Style}
+          <div className={cx("headerb")}>
+            <div className={cx("titlep")}>
+              {Code} - {Style} (
+              <span style={{ color: "var(--bs-gray)" }}>{HostCode}</span>)
             </div>
-            <div className={cx("dot")}>&nbsp;&nbsp;–&nbsp;&nbsp;</div>
-            <div className={cx("price")}>
+            <div className={cx("priceb")}>
               <CurrencyFormat
                 value={Vnd}
                 displayType={"text"}
@@ -212,13 +279,22 @@ export default function PostThumnail({ ...props }) {
             </div>
           </div>
           <div className={cx("cap")}>
-            <b>{Bedroom}</b> Bed • <b>{Bathroom}</b> Bath • <b>{Area}</b> Sqm •
-            Available: <b>{Duration}</b> days left
+            <p>
+              {Ward}, {Dist}, {City}
+            </p>
+            <p>
+              <b>{Bedroom}</b> Bedroom(s) • <b>{Bathroom}</b> Bathroom(s) •{" "}
+              <b>{Area}</b> Sqm
+            </p>
+            <p>
+              Available in:{" "}
+              {dateCal() > 0 ? Duration + ` (${dateCal()} days left)` : "Now"}
+            </p>
           </div>
           {/* <div className={cx("cap")}>
             • Available: <b>2</b> days left
           </div> */}
-          <div className={cx("linkShare")}>
+          <div className={cx("linkShare")} style={{ display: "none" }}>
             <div className={cx("link")}>http://rentvn.top/product/D2N0005</div>
             <div className={cx("copy")} onClick={handleCopy}>
               <span className="material-icons" style={{ fontSize: "12px" }}>
@@ -231,6 +307,7 @@ export default function PostThumnail({ ...props }) {
             See More
           </div>
         </div>
+        {copyright()}
       </div>
     </>
   );

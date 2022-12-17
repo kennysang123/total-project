@@ -22,7 +22,7 @@ export default function MobileOnly() {
   const [isRefresh, setIsRefresh] = useState(false);
   const [isScrollDisable, setIsScrollDisable] = useState(false);
   const [query, setQuery] = useState("four");
-  const [limitSql, setLimitSql] = useState(10);
+  const [limitSql, setLimitSql] = useState(2);
   const [pageNumber, setPageNumber] = useState(0);
   const { loading, posts, error, hasMore } = usePost(
     query,
@@ -40,12 +40,12 @@ export default function MobileOnly() {
   /* load posts */
 
   /*end load posts */
-  console.log({
+  /* console.log({
     loading: loading,
     posts: posts,
     error: error,
     hasMore: hasMore,
-  });
+  }); */
   //console.log("mobi:", posts);
 
   function handleScrollDisable() {
@@ -86,8 +86,21 @@ export default function MobileOnly() {
   async function handleClick() {
     const url = Global("url");
     const FuncX1x = new FuncX1();
-    const data = await FuncX1x.SelectData(url, "all", 4, 0);
+    const data = await FuncX1x.SelectData(url, "all", 11, 0);
     console.log("data sau await: ", data);
+    /* xu ly ngay thang */
+    let result = [];
+    data.forEach((element) => {
+      const duration = element.Duration;
+      const d = new GlobalClass();
+      let re = d.dateCal(duration).days;
+      re < 0 ? (re = "Full") : (re = "Empty");
+
+      result.push({ ...element, Full: re });
+    });
+    console.log(result);
+    //const d = new GlobalClass();
+    //const re = d.dateCal(Duration);
     //console.log("data sau await2: ", data[0]["Code"]);
     return data;
   }
@@ -144,6 +157,34 @@ export default function MobileOnly() {
     console.log(JSON.stringify(map));
   };
 
+  const postThum2 = () => {
+    return (
+      <>
+        <div className={cx("post2")}>
+          <div className={cx("head2")}>
+            <div className={cx("avatar")}>
+              <div className={cx("photo")}></div>
+              <div className={cx("title")}>
+                <span>{"Code"}</span> -{" "}
+                <span className={cx("city")}>{"City"}</span>
+              </div>
+              <div className={cx("time")}>• {"LatestUpdate"}</div>
+              <div className={cx("favoriteDis")} onClick={"handleAddFavorite"}>
+                <span className={cx("done", "material-icons")}>
+                  {"iconChange"}
+                </span>
+              </div>
+              <div className={cx("upload")}>
+                <span className={cx("done", "material-icons")}>settings</span>
+              </div>
+            </div>
+          </div>
+          <div className={cx("body2")}>2</div>
+          <div className={cx("bottom2")}>3</div>
+        </div>
+      </>
+    );
+  };
   return (
     <>
       {isPanelSearch && (
@@ -161,13 +202,16 @@ export default function MobileOnly() {
         />
       )}
       {!loading ? "mapPost" : "Loading..dd."}
+
+      {/* <div className={cx("containerX")}>{postThum2()}</div> */}
       <div className={cx("containerX")}>{productView}</div>
+      <div style={{ width: "100%", height: "100px" }}></div>
       <div className={cx("footer")}>
         <div className={cx("popup")}>
-          <IconNav props={{ name: "search" }} onClick={handleSearch} />
+          <IconNav props={{ name: "menu" }} onClick={handleMenu} />
           <IconNav props={{ name: "home" }} onClick={handleHome} />
           <IconNav props={{ name: "favorite" }} onClick={handleFavorite} />
-          <IconNav props={{ name: "menu" }} onClick={handleMenu} />
+          <IconNav props={{ name: "search" }} onClick={handleSearch} />
         </div>
       </div>
       {console.log("end-render")}

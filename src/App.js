@@ -17,19 +17,24 @@ import NgocThao from "./Components_Shopee/NgocThao";
 import Reducer from "./pages/Reducer";
 import ExFull from "./pages/ExFull";
 import Admin from "./pages/Admin";
+import Bds from "./pages/Bds";
+import HomeVNGATE from "./pages/HomeVNGATE";
+import EditJson from "./pages/Bds/comp/EditJson";
+import CV_IT from "./APPSS/CV_IT";
+import BDS_TWITTER from "./APPSS/BDS_TWITTER";
 
 function App() {
-  const nav = {
-    home: { path: "/", comp: <MobileOnly /> },
-    mobi: { path: "/", comp: <MobileOnly /> },
-  };
   return (
     <>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route path="/" element={<MobileOnly />} /> */}
-          <Route path={nav.home.path} element={nav.home.comp} />
+          <Route path="/cvit" element={<CV_IT />} />
+          <Route path="/bdstwitter" element={<BDS_TWITTER />} />
+          {/* <Route path="/" element={<HomeVNGATE />} /> */}
+          <Route path="/" element={<Bds />} />
+
+          <Route path="/edit" element={<EditJson />} />
+          <Route path="/bds" element={<Bds />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/exfull" element={<ExFull />} />
           <Route path="/reducer" element={<Reducer />} />

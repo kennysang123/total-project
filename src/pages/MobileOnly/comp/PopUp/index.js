@@ -281,20 +281,23 @@ export default function PopUp({ ...props }) {
         >
           {value.icon}
         </span>
-        <div className="form-check">
+        <span style={{ color: !isUtilities[value.nameX] ? "#b5b5b5" : "" }}>
+          {value.labelX}
+        </span>
+        {/* <div className="form-check">
           <input
             type="checkbox"
             className="form-check-input"
             id={value.idX}
             name={value.nameX}
             value="something"
-            checked={isUtilities[value.nameX]}
+            defaultChecked={isUtilities[value.nameX]}
             disabled={!isUtilities[value.nameX]}
           ></input>
           <label className="form-check-label" htmlFor={value.idX}>
             {value.labelX}
           </label>
-        </div>
+        </div> */}
       </li>
     ));
     return (
@@ -372,20 +375,25 @@ export default function PopUp({ ...props }) {
         >
           {value.icon}
         </span>
-        <div className="form-check">
+        <span
+          style={{ color: !isUtilitiesAround[value.nameX] ? "#b5b5b5" : "" }}
+        >
+          {value.labelX}
+        </span>
+        {/* <div className="form-check">
           <input
             type="checkbox"
             className="form-check-input"
             id={value.idX}
             name={value.nameX}
             value="something"
-            checked={isUtilitiesAround[value.nameX]}
+            defaultChecked={isUtilitiesAround[value.nameX]}
             disabled={!isUtilitiesAround[value.nameX]}
           ></input>
           <label className="form-check-label" htmlFor={value.idX}>
             {value.labelX}
           </label>
-        </div>
+        </div> */}
       </li>
     ));
     return (
@@ -564,28 +572,31 @@ export default function PopUp({ ...props }) {
     const colx = setColByWidth();
 
     const mapFurnitures = Furnitures.map((value, index) => (
-      <li className={"col222"} key={v4()} style={{ listStyleType: "none" }}>
+      <li className={"col222x"} key={v4()} style={{ listStyleType: "none" }}>
         <span
           className="material-icons"
           style={{ color: !isFurnitures[value.nameX] ? "#b5b5b5" : "" }}
         >
           {value.icon}
         </span>
+        <span style={{ color: !isFurnitures[value.nameX] ? "#b5b5b5" : "" }}>
+          {value.labelX}
+        </span>
 
-        <div className="form-check">
+        {/* <div className="form-check">
           <input
             type="checkbox"
             className="form-check-input"
             id={value.idX}
             name={value.nameX}
             value="something"
-            checked={isFurnitures[value.nameX]}
+            defaultChecked={isFurnitures[value.nameX]}
             disabled={!isFurnitures[value.nameX]}
           ></input>
           <label className="form-check-label" htmlFor={value.idX}>
             {value.labelX}
           </label>
-        </div>
+        </div> */}
       </li>
     ));
 
@@ -627,9 +638,13 @@ export default function PopUp({ ...props }) {
       <>
         <div className={cx("wrapperP")}>
           <div className={cx("title-second")}>
-            <h2>Google Map</h2>
+            <h2>Private Infomation</h2>
+            <p>Phone: {props.props.data.Phone1}</p>
+            <p>Name: {props.props.data.Phone1Name}</p>
+            <p>Google Map: {JSON.stringify(props.props.data.GoogleMap)}</p>
           </div>
           <div className={cx("map-content")}>
+            <p>Need private key</p>
             <p className={cx("link")}>https://g.page/La-Maison-Apt?share</p>
             <span className={cx("btnx")}>
               Open in Google Map{" "}
@@ -648,14 +663,15 @@ export default function PopUp({ ...props }) {
       <div className={cx("wrapper")} style={{ width: wid }}>
         <div className={cx("header")} onClick={handleClose}>
           <p>
-            Go to App <span style={{ fontWeight: "bold" }}>vngate.top</span> and
-            search ID:{" "}
+            Go to Web App <span style={{ fontWeight: "bold" }}>vngate.top</span>{" "}
+            and search ID:{" "}
             <span style={{ fontWeight: "bold" }}>{props.props.data.Code}</span>
           </p>
         </div>
         <div className={cx("windows")}>
           {title()}
           {mainPhoto()}
+
           {Price()}
           {details()}
           {Utilities()}

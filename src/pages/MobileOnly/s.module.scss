@@ -4,6 +4,61 @@ $width: 415px;
 body {
   user-select: none;
 }
+
+.post2 {
+  border: 1px solid red;
+
+  .head2 {
+    background-color: yellow;
+    height: 70px;
+    position: relative;
+    .photo {
+      background-color: red;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      height: 40px;
+      width: 40px;
+      border-radius: 999px;
+      background-image: url(https://docs.google.com/uc?export=download&id=19YeYUQNGvxXzUoMORis_rux6fnfRd4cY);
+      background-position: center;
+    }
+    .title {
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      position: absolute;
+      left: 65px;
+      top: 10px;
+    }
+    .time {
+      color: gray;
+      /* font-weight: lighter; */
+      font-size: 14px;
+      position: absolute;
+      left: 66px;
+      top: 35px;
+    }
+    .favorite {
+      color: gray;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+  .body2 {
+    background-color: green;
+    height: 320px;
+  }
+  .bottom2 {
+    background-color: yellow;
+    height: 154px;
+  }
+}
+
 .containerX {
   max-width: $width;
   margin-left: auto;

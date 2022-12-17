@@ -12,7 +12,7 @@ export default function Inter() {
         entries.forEach((entry) => {
           entry.target.classList.toggle("show", entry.isIntersecting);
           /* disable hide element */
-          if (entry.isIntersecting) observer.unobserve(entry.target);
+          /* if (entry.isIntersecting) observer.unobserve(entry.target); */
         });
         console.log(entries);
       },

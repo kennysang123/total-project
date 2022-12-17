@@ -1,0 +1,25 @@
+.wrapperP {
+  /* background-color: rgb(229, 229, 229); */
+  margin: 10px;
+  .contentP {
+    border: 1px solid #b2bec3;
+    height: 70vh;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  .titleP {
+    /* background-color: yellow; */
+    position: relative;
+    height: 30px;
+    > h6 {
+      position: absolute;
+      top: 5px;
+    }
+    > button {
+      position: absolute;
+      top: 0px;
+      left: 154px;
+    }
+  }
+}

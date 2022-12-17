@@ -102,7 +102,7 @@ class Connect
       if ($check === TRUE) {
         array_push($addArr, "success");
       } else {
-        array_push($failAddArr, "fail" . $Code);
+        array_push($failAddArr, "fail" . $Code . " -> " . $sql);
       }
     }
 
