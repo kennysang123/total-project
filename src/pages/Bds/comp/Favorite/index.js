@@ -7,28 +7,21 @@ const cx = classNames.bind(styles);
 
 export default function Favorite(props) {
   const [refresh, setRefresh] = useState(false);
-  //console.log("Favorite: ", props.props.setIsRefresh);
   function get2() {
     const itemsInit = ["D2N0005", "D2N0006", "D2N0007", "D2N0008", "D2N0009"];
     const itemGet = localStorage.getItem("bdsFavorite");
-    /* localStorage.setItem("favorite", JSON.stringify(itemsInit)); */
-    //console.log("itemget", itemGet);
     let item2 = [];
     if (itemGet) {
       item2 = JSON.parse(itemGet);
     }
-    //console.log(444, item2);
     return item2;
   }
   const itemlist = get2();
   const [favoriteItem, setFavoriteItem] = useState(itemlist);
-  //console.log("itemlist", itemlist);
 
   function deleteItem(e) {
-    //console.log("delete", e);
     const index = favoriteItem.indexOf(e);
     if (index > -1) {
-      // only splice array when item is found
       let items = [...favoriteItem];
       items.splice(index, 1); // 2nd parameter means remove one item only
       localStorage.setItem("bdsFavorite", JSON.stringify(items));

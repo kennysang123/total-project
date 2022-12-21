@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CloseIcon from "@mui/icons-material/Close";
+import AlertDialog from "../AlertDialog";
 const cx = classNames.bind(styles);
-
+let timer;
 export default function PostThum(props) {
+  console.log("rerender postthum");
   const [isPopUp, setIsPopUp] = useState(false);
+  const [isAlert, setIsAlert] = useState("");
+  const [typeFavorite, setTypeFavorite] = useState("no");
+  const ptProps = props.props;
   const post = props.props.data;
   const code = post.Content.code;
   const dist = post.Content.dist;
@@ -34,6 +41,7 @@ export default function PostThum(props) {
 
     document.body.style.overflow = "hidden";
     const handleClose = () => {
+      document.body.style.overflow = "scroll";
       props.props.setIsPopUp(false);
     };
     const Title = () => (
@@ -107,8 +115,8 @@ export default function PostThum(props) {
               <div className={cx("Bio")}>
                 <b>Bio:</b>{" "}
                 <span className={cx("BioContent")}>
-                  "Nhận ký gửi, mua bán Bất Động Sản. Hợp tác ace môi giới đúng
-                  theo thị trường. Chữ tín là trách nhiệm."
+                  "Nhận ký gửi, mua bán nhà đất. Hợp tác ace môi giới đúng theo
+                  thị trường. Chữ tín là trách nhiệm."
                 </span>
               </div>
             </div>
@@ -168,6 +176,9 @@ export default function PostThum(props) {
                 tìm với ID:{" "}
                 <span style={{ fontWeight: "bold" }}>{data2.code}</span>
               </p>
+              <div className={cx("close2")}>
+                <CloseIcon></CloseIcon>
+              </div>
             </div>
             <div className={cx("body")}>
               {Title()}
@@ -177,29 +188,97 @@ export default function PostThum(props) {
             </div>
             <div className={cx("footer2")} onClick={handleClose}></div>
             <div className={cx("close")} onClick={handleClose}>
-              <span className="material-icons">clear</span>
+              {/* <span className="material-icons">clear</span> */}
+              <CancelIcon></CancelIcon>
             </div>
           </div>
         </div>
       </>
     );
   };
+  //--------add favorite-----------
+  const handleAddFavorite = () => {
+    let localData = localStorage.getItem("bdsFavorite");
+    if (localData.length > 2) {
+      console.log("khac null");
+      localData = JSON.parse(localData);
+      // kiem tra item
+      const index = localData.indexOf(code);
+      if (index > -1) {
+        console.log("da co roi");
+        setIsAlert("favorite");
+        setTypeFavorite("yes");
+        timer = setTimeout(() => {
+          clearTimeout(timer);
+          setIsAlert("");
+        }, 2000);
+        //GLOBAL_ALERT_CONTENT = "This apartment has added to Favorite";
+        //console.log(GLOBAL_ALERT_CONTENT);
+        //setIsArlert(true);
+      } else {
+        let dataTemp2 = JSON.parse(localData);
+        dataTemp2 = [...dataTemp2, code];
+        dataTemp2 = JSON.stringify(dataTemp2);
+        localStorage.setItem("bdsFavorite", dataTemp2);
+      }
+    } else {
+      let dataTemp = [code];
+      dataTemp = JSON.stringify(dataTemp);
+      localStorage.setItem("bdsFavorite", dataTemp);
+      setTypeFavorite("yes");
+      console.log("set yes");
+    }
+  };
+  //--------check favorite-----------
+  const checkFavorite = () => {
+    let localData = localStorage.getItem("bdsFavorite");
+    if (localData.length > 2) {
+      console.log("khac null");
+      localData = JSON.parse(localData);
+      // kiem tra item
+      const index = localData.indexOf(code);
+      if (index > -1) {
+        console.log("da co roi");
+        setTypeFavorite("yes");
+      }
+    } else {
+      setTypeFavorite("no");
+    }
+  };
+  useEffect(() => {
+    checkFavorite();
+    return () => {};
+  }, [ptProps.isReLoad]);
+
   //--------return main-----------
   return (
     <>
+      {isAlert == "favorite" && (
+        <AlertDialog
+          /* props={{ content: "This apartment has added to Favorite" }} */
+          props={{
+            content:
+              "Đất(căn nhà) này đã được thêm vào danh sách yêu thích của bạn",
+          }}
+        />
+      )}
       {isPopUp && <PopUp3 props={{ data: post, setIsPopUp: setIsPopUp }} />}
       <div className={cx("PostThum", "mono")}>
         <div className={cx("Header")}>
           <div className={cx("Avatar")}></div>
-          <div className={cx("TitleL")}>
+          <div className={cx("TitleL")} onClick={checkFavorite}>
             {code} - {typeBds}
           </div>
           <div className={cx("TitleS")}>• {dayUpdate}</div>
           <div className={cx("Date")}>
             • {dist}, {city}
           </div>
-          <div className={cx("Favorite")}>
-            <span className="material-icons">favorite_border</span>
+          <div className={cx("Favorite")} onClick={handleAddFavorite}>
+            {typeFavorite == "no" ? (
+              <span className="material-icons">favorite_border</span>
+            ) : (
+              <span className="material-icons">check</span>
+            )}
           </div>
         </div>
         <div className={cx("Body")}>

@@ -6,6 +6,13 @@ import PostThum from "./comp/PostThum";
 import ClassGlobal from "./Global/ClassGlobal";
 import GlobalClass from "../../components_global/GlobalClass";
 import Panel from "./comp/Panel";
+import Icon from "@mui/material/Icon";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ClearIcon from "@mui/icons-material/Clear";
+import NavBar from "./comp/NavBar";
+import PanelSearch from "./comp/PanelSearch";
+import PanelFavorite from "./comp/PanelFavorite";
+import AlertDialog from "./comp/AlertDialog";
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +25,7 @@ export default function BDS_TWITTER() {
   const [isReLoad, setIsReLoad] = useState(false);
   const [searchPayload, setSearchPayload] = useState("");
   const [full, setFull] = useState("");
+  const [panelShow, setPanelShow] = useState("no");
   //-----------------get data server-----------------
   function handleSelectAll() {
     const data2 = { method: "selectall", searchValue: searchPayload };
@@ -31,16 +39,15 @@ export default function BDS_TWITTER() {
           let post1 = element.Content;
           post1 = JSON.parse(post1);
           post1 = { ...element, Content: post1 };
-          console.log(12, post1);
           postSum.push(post1);
         });
         setPostGet([...postSum]);
-        console.log(11111, postSum);
       } else {
         setPostGet(null);
       }
     });
   }
+  console.log("re-render main");
   useEffect(() => {
     console.log("re-render", searchPayload);
     handleSelectAll(searchPayload);
@@ -50,7 +57,10 @@ export default function BDS_TWITTER() {
   const renderPosts = () => {
     if (postGet != null) {
       const map1 = postGet.map((v, i) => (
-        <PostThum key={i} props={{ data: v }} />
+        <PostThum
+          key={i}
+          props={{ data: v, setIsReLoad: setIsReLoad, isReLoad: isReLoad }}
+        />
       ));
       setPosts(map1);
     } else {
@@ -61,6 +71,7 @@ export default function BDS_TWITTER() {
     renderPosts();
     return () => {};
   }, [postGet]);
+  //--------------show panel----------
   //---------------------------------------
   const arr = [];
   for (let i = 0; i < 10; i++) {
@@ -85,63 +96,77 @@ export default function BDS_TWITTER() {
 
     return () => {};
   }, []);
-  //-----------nav bar--------------
-  const NavBar = () => {
-    const IconNav = (props) => {
-      const data2 = props.props;
-      const name = {
-        menu: "Menu",
-        search: "Tìm kiếm",
-        favorite: "Yêu thích",
-      };
 
-      const handleClick = () => {
-        setIsPanel(!isPanel);
-        switch (data2.name) {
-          case "search":
-            console.log("search");
-            break;
-          case "favorite":
-            console.log("favorite");
-            break;
-
-          default:
-            break;
-        }
-      };
-      return (
-        <>
-          <div className={cx("IconNav")} onClick={handleClick}>
-            <div className={cx("icon")}>
-              <span className="material-icons">{data2.name}</span>
-            </div>
-            <div className={cx("title")}>{name[data2.name]}</div>
-          </div>
-        </>
-      );
-    };
+  //-------flag-------------------------
+  const Flag = () => {
     return (
       <>
-        <div style={{ width: "100%", height: "100px" }}></div>
-        <div className={cx("footer")}>
-          <div className={cx("popup")}>
-            <div className={cx("logo")}>
-              <div className={cx("tit1")}>NHÀ ĐẤT</div>
-              <div className={cx("tit2")}>bds.vngate.top</div>
+        <div className={cx("Flag")}>
+          <div className={cx("header")}>
+            <div className={cx("icon")}>
+              <CheckCircleIcon></CheckCircleIcon>
             </div>
-            <IconNav props={{ name: "menu", setIsPanel: setIsPanel }} />
-            <IconNav props={{ name: "favorite" }} />
-            <IconNav props={{ name: "search" }} />
+            <div className={cx("text")}>Không tìm thấy</div>
+          </div>
+          <div className={cx("iconClose")}>
+            <ClearIcon></ClearIcon>
+          </div>
+          <div className={cx("body")}>
+            Không có kết quả nào được tìm thấy. Hãy thử tìm lại hoặc nhấn nút
+            Xóa kết quả tìm kiếm.
           </div>
         </div>
       </>
     );
   };
+  const Flag2 = () => {
+    return (
+      <>
+        <div className={cx("Flag2")}>
+          <div className={cx("header")}>
+            <div className={cx("text")}>Không tìm thấy</div>
+          </div>
+          <div className={cx("iconClose")}>
+            <ClearIcon></ClearIcon>
+          </div>
+          <div className={cx("body")}>
+            Không có kết quả nào được tìm thấy. Hãy thử tìm lại hoặc nhấn nút
+            Xóa kết quả tìm kiếm.
+          </div>
+        </div>
+      </>
+    );
+  };
+  //--------------reload main---------------------------
 
   //-----------------return main-------------------------
   return (
     <>
-      {isPanel && (
+      {panelShow == "favorite" && (
+        <PanelFavorite
+          props={{
+            setSearchPayload: setSearchPayload,
+            searchPayload: searchPayload,
+            setPanelShow: setPanelShow,
+            panelShow: panelShow,
+            setIsReLoad: setIsReLoad,
+            isReLoad: isReLoad,
+          }}
+        />
+      )}
+      {panelShow == "search" && (
+        <PanelSearch
+          props={{
+            setSearchPayload: setSearchPayload,
+            searchPayload: searchPayload,
+            setPanelShow: setPanelShow,
+            panelShow: panelShow,
+          }}
+        />
+      )}
+
+      {/* thu nghiem */}
+      {false && (
         <Panel
           props={{
             name: "favorite",
@@ -164,8 +189,14 @@ export default function BDS_TWITTER() {
             Xóa kết quả tìm kiếm.
           </p>
         )}
-
-        <NavBar />
+        <NavBar
+          props={{
+            setIsPanel: setIsPanel,
+            isPanel: isPanel,
+            setPanelShow: setPanelShow,
+            panelShow: panelShow,
+          }}
+        />
       </div>
     </>
   );

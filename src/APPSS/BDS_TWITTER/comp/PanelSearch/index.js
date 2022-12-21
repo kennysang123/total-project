@@ -1,45 +1,16 @@
-import React, { useCallback, useRef, useState } from "react";
-import { v4 } from "uuid";
+import React, { useState } from "react";
+import Button from "@atlaskit/button";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
-import Button from "@atlaskit/button";
-
 const cx = classNames.bind(styles);
 
 let value2;
 let value3 = "Sẵn sàng tìm kiếm.";
-export default function Panel(props) {
-  //const [timer, setTimer] = useState(null);
-
-  const [full2, setFull2] = useState("");
+export default function PanelSearch(props) {
   const d = props.props;
-  const titlePanel = () => {
-    switch (props.props.type) {
-      case "home":
-        return "Home";
-        break;
-      case "favorite":
-        return "Yêu thích";
-        break;
-      case "menu":
-        return "Menu";
-        break;
-      case "search":
-        return "Tìm kiếm";
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const handleClick = () => {
-    d.setIsReLoad(!d.isReLoad);
-  };
-
+  console.log(77777, d);
   ///----search element--------
   let timer;
-
   const SearchPanel = () => {
     const [seachValue, setSeachValue] = useState(value2);
     const [searchStatus, setSearchStatus] = useState(value3);
@@ -69,7 +40,7 @@ export default function Panel(props) {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h6>Nhập vào ID cần tìm:</h6>
+                <h6>Nhập vào ID cần tìm: private</h6>
               </div>
               <div className={cx("col-12")}>
                 <div className="input-group mb-3">
@@ -99,21 +70,19 @@ export default function Panel(props) {
       </>
     );
   };
+  //----------handle close----------------
+  const handleClose = () => {
+    d.setPanelShow("");
+  };
   //----------return main-----------------
   return (
     <>
       <div className={cx("Panel")}>
-        <div
-          className={cx("panel-hide")}
-          onClick={() => d.setIsPanel(!d.isPanel)}
-        ></div>
+        <div className={cx("panel-hide")} onClick={handleClose}></div>
         <div className={cx("panel")}>
           <div className={cx("panel-header")}>
-            <h2 className={cx("title")}></h2>
-            <div
-              className={cx("close")}
-              onClick={() => d.setIsPanel(!d.isPanel)}
-            >
+            <h2 className={cx("title")}>Tìm kiếm</h2>
+            <div className={cx("close")} onClick={handleClose}>
               <span className="material-icons">clear</span>
             </div>
           </div>
