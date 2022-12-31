@@ -21,7 +21,7 @@
     z-index: 101;
     position: fixed;
     /* bottom: 0; */
-    top: 10px;
+    top: 5px;
     width: 415px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -33,7 +33,7 @@
       .close2 {
         position: absolute;
         top: 15px;
-        right: 10px;
+        right: 15px;
         color: #555;
         > svg {
           font-size: 25px;
@@ -46,11 +46,13 @@
       height: 60px;
       flex-shrink: 0;
       > p {
-        font-family: var(--body-font);
-        font-size: 18px;
-        margin-left: 20px;
-        margin-top: 18px;
+        //font-family: var(--body-font);
+        font-size: 14px;
+        width: 70%;
+        margin-left: 30px;
+        margin-top: 6px;
         color: var(--menulist-color);
+        color: gray;
       }
     }
     .body {
@@ -97,6 +99,7 @@
     .title2 {
       margin-top: 20px;
       margin-bottom: 0px;
+      font-weight: bold;
     }
     .location2 {
       margin-bottom: 10px;
@@ -151,6 +154,11 @@
   .BdsContent {
     .title2 {
       color: var(--menulist-color);
+      > span:nth-child(1) {
+        font-size: 12px;
+        color: gray;
+        font-weight: 400;
+      }
     }
     .photo2 {
       width: 100%;
@@ -158,6 +166,9 @@
       margin-bottom: 10px;
       border-radius: 10px;
     }
+  }
+  .SpaceBottom {
+    height: 3vh;
   }
 }
 //---post thum---------
@@ -171,7 +182,7 @@
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
-  height: 482px;
+  height: 500px;
   background-color: white;
   border-radius: 20px;
   > .Header {
@@ -254,6 +265,14 @@
       font-size: 16px;
       font-weight: bold;
       color: #0021d1;
+      /* ds */
+      background: #2d49b7;
+      color: white;
+      border-radius: 8px;
+      padding-left: 7px;
+      padding-right: 7px;
+      padding-top: 4px;
+      padding-bottom: 4px;
     }
     > .Chitiet {
       background-color: transparent;
@@ -264,7 +283,7 @@
       padding-right: 10px;
       border-radius: 15px;
       position: absolute;
-      top: 45px;
+      top: 55px;
       right: 15px;
       &:hover {
         background-color: #0dc5ff;
@@ -280,8 +299,9 @@
       margin-left: 25px;
       > p {
         color: #646262;
-        font-size: 14px;
+        font-size: 12px;
         border-top: 1px solid #646262;
+        width: 243px;
       }
     }
   }

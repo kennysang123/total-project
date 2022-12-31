@@ -22,6 +22,9 @@ import HomeVNGATE from "./pages/HomeVNGATE";
 import EditJson from "./pages/Bds/comp/EditJson";
 import CV_IT from "./APPSS/CV_IT";
 import BDS_TWITTER from "./APPSS/BDS_TWITTER";
+import RENT_VNGATE from "./APPSS/RENT_VNGATE";
+import RENT_VNGATE_UP from "./APPSS/RENT_VNGATE_UP";
+import BDS_VNGATE from "./APPSS/BDS_VNGATE";
 
 function App() {
   return (
@@ -30,8 +33,10 @@ function App() {
         <Routes>
           <Route path="/cvit" element={<CV_IT />} />
           <Route path="/bdstwitter" element={<BDS_TWITTER />} />
+          <Route path="/rent" element={<RENT_VNGATE />} />
+          <Route path="/rentup" element={<RENT_VNGATE_UP />} />
           {/* <Route path="/" element={<HomeVNGATE />} /> */}
-          <Route path="/" element={<Bds />} />
+          <Route path="/" element={<BDS_VNGATE />} />
 
           <Route path="/edit" element={<EditJson />} />
           <Route path="/bds" element={<Bds />} />

@@ -1,0 +1,13 @@
+:root {
+    --colorUsaBlue: #212E60;
+    --colorUsaRed: #C02126;
+    --colorNavBar: #800080;
+    --colorBlue2: #0079C1;
+    /* --colorPrice: #2d49b7; */
+    --colorPrice: #2d49b7;
+}
+
+.colorGreen {
+    color: lime;
+    background-color: #0F00C1;
+}

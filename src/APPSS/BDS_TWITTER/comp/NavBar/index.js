@@ -8,6 +8,11 @@ export default function NavBar(props) {
   const propsNavBar = props.props;
 
   //-----------------hanlde show panel------------------
+  const handlePressHDanIcon = () => {
+    propsNavBar.panelShow != "readme"
+      ? propsNavBar.setPanelShow("readme")
+      : propsNavBar.setPanelShow("");
+  };
   const handlePressFavoriteIcon = () => {
     propsNavBar.panelShow != "favorite"
       ? propsNavBar.setPanelShow("favorite")
@@ -29,12 +34,11 @@ export default function NavBar(props) {
             <div className={cx("tit1")}>NHÀ ĐẤT</div>
             <div className={cx("tit2")}>bds.vngate.top</div>
           </div>
-
+          <IconNav props={{ name: "readme" }} onClick={handlePressHDanIcon} />
           <IconNav
             props={{ name: "favorite" }}
             onClick={handlePressFavoriteIcon}
           />
-
           <IconNav props={{ name: "search" }} onClick={handlePressSearchIcon} />
         </div>
       </div>

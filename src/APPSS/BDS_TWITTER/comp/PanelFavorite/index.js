@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "@atlaskit/button";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
 import FavoriteItem from "../FavoriteItem";
@@ -7,7 +6,6 @@ import { v4 } from "uuid";
 const cx = classNames.bind(styles);
 
 export default function PanelFavorite(props) {
-  //localStorage.clear("bdsFavorite");
   const d = props.props;
   //----------handle favorite--------------
   const [refresh, setRefresh] = useState(false);
@@ -42,6 +40,7 @@ export default function PanelFavorite(props) {
         props={{
           name: value,
           deleteItem: deleteItem,
+          setSearchPayload: d.setSearchPayload,
 
           /* setFavoriteItem: setFavoriteItem,
           
@@ -64,7 +63,6 @@ export default function PanelFavorite(props) {
   const handleClose = () => {
     d.setPanelShow("");
     d.setIsReLoad(!d.isReLoad);
-    console.log(2222222222);
   };
   //----------return main-----------------
   return (

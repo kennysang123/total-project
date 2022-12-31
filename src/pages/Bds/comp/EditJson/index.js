@@ -105,6 +105,22 @@ export default function EditJson() {
   }
 
   const Form = () => {
+    const handleDateNow = () => {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const dateVN = `${day}/${month}/${year}`;
+      //document.writeln(dateVN + "<hr>");
+      data = { ...data, dayUpdate: dateVN };
+      return dateVN;
+    };
+    const autoPass = () => {
+      const pass = "home";
+      data = { ...data, pass: pass };
+      return pass;
+    };
+
     return (
       <>
         <div className="container">
@@ -180,6 +196,7 @@ export default function EditJson() {
                   <option value="Quận Gò Vấp">Quận Gò Vấp</option>
                   <option value="Quận Bình Chánh">Quận Bình Chánh</option>
                   <option value="Quận Củ Chi">Quận Củ Chi</option>
+                  <option value="Huyện Cần Đước">Huyện Cần Đước</option>
                 </select>
               </div>
               <div class="input-group mb-3">
@@ -193,6 +210,7 @@ export default function EditJson() {
                 >
                   <option selected>Choose...</option>
                   <option value="TP.HCM">TP.HCM</option>
+                  <option value="Long An">Long An</option>
                 </select>
               </div>
               <div class="input-group mb-3">
@@ -237,6 +255,8 @@ export default function EditJson() {
                   class="form-control"
                   placeholder="22/02/2022"
                   onChange={handleDayUpdate}
+                  value={handleDateNow()}
+                  disabled
                 ></input>
               </div>
               <div class="input-group mb-3">
@@ -248,6 +268,8 @@ export default function EditJson() {
                   class="form-control"
                   placeholder="pass..."
                   onChange={handlePass}
+                  value={autoPass()}
+                  disabled
                 ></input>
               </div>
             </div>

@@ -46,7 +46,7 @@ class  Cbds
   public function SelectAll($value)
   {
     //$sql = "SELECT * FROM `BdsVngate`;";
-    $sql = "SELECT * FROM BdsVngate WHERE Content LIKE '%$value%';";
+    $sql = "SELECT * FROM BdsVngate WHERE Content LIKE '%$value%' ORDER BY Id DESC;";
     $this->connect();
     if ($this->conn1) {
       $query = mysqli_query($this->conn1, $sql);
@@ -66,6 +66,286 @@ class  Cbds
     }
     $this->close();
   }
+  //----------Rent select all ----------------------
+  public function rent_select_duration_lessthan_20($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $dateNow = $inStr["dateNow"];
+    //var_dump($inStr);
+    $sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,ownerr,codeHost,DATEDIFF(duration,'$dateNow') AS daysOfDuration,DATEDIFF(dayUpdate,'2022-12-24') AS daysOfUpdate FROM RentVnGate WHERE DATEDIFF(duration,'2022-12-24') < 20 ORDER BY daysOfDuration DESC;";
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+  public function check_code($code)
+  {
+    $sql = "SELECT code FROM RentVnGate WHERE code = '$code';";
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+          if ($data == null) {
+            echo "chua co, da them moi";
+            return true;
+          } else {
+            echo "co roi, ko them.";
+            return false;
+          }
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+
+  public function rent_insert_new_id($jsonStr)
+  {
+    $jsonStr2 = json_decode($jsonStr, true); //return a array
+    //{"code":"R0007","typer":"Studio","street":"Ngo Tat To Str","dist":"Binh Thanh Dist","city":"HCMC","project":"","utilities":"","duration":"2023-01-03","dayUpdate":"2022-12-27","content":"Free fee all except electricity 4k/kwh, water 100k/person. Fully furnished, 3rd floor, stairs.","price":"6000","area":"25","bath":"1","bed":"1","ownerr":"+84888260793 NANA HOUSE Bình Thạnh 197 ngô tất tố lầu 3","codeHost":""}
+    $code = $jsonStr2["code"];
+    $typer = $jsonStr2["typer"];
+    $street = $jsonStr2["street"];
+    $dist = $jsonStr2["dist"];
+    $city = $jsonStr2["city"];
+    $project = $jsonStr2["project"];
+    $utilities = $jsonStr2["utilities"];
+    $duration = $jsonStr2["duration"];
+    $dayUpdate = $jsonStr2["dayUpdate"];
+    $content = $jsonStr2["content"];
+    $price = $jsonStr2["price"];
+    $area = $jsonStr2["area"];
+    $bath = $jsonStr2["bath"];
+    $bed = $jsonStr2["bed"];
+    $ownerr = $jsonStr2["ownerr"];
+    $codeHost = $jsonStr2["codeHost"];
+    $isTrue = $this->check_code($code);
+    if ($isTrue) {
+      $sql = "INSERT INTO RentVnGate (code, typer, street, dist, city, project, utilities, duration, dayUpdate, content, price, area, bath, bed, ownerr, codeHost) VALUES ('$code','$typer','$street','$dist','$city','$project','$utilities','$duration','$dayUpdate','$content','$price','$area','$bath','$bed','$ownerr','$codeHost');";
+      $this->connect();
+      if ($this->conn1) {
+        $query = mysqli_query($this->conn1, $sql);
+        if ($query) {
+          echo "insert thanh cong";
+        }
+      } else {
+        $error = ["error" => "ket noi msql loi."];
+        echo json_encode($error);
+      }
+      $this->close();
+    }
+  }
+
+  public function rent_select_with_search($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $searchStr = $inStr["searchStr"];
+    $dateNow = $inStr["dateNow"];
+    //var_dump($inStr);
+    //$sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,codeHost FROM RentVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR typer LIKE '%$searchStr%' OR street LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR project LIKE '%$searchStr%' OR utilities LIKE '%$searchStr%' OR content LIKE '%$searchStr%' ORDER BY code DESC;";
+    $sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,ownerr,codeHost,DATEDIFF(duration,'$dateNow') AS daysOfDuration,DATEDIFF('$dateNow',dayUpdate) AS daysOfUpdate FROM RentVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR typer LIKE '%$searchStr%' OR street LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR project LIKE '%$searchStr%' OR utilities LIKE '%$searchStr%' OR content LIKE '%$searchStr%' ORDER BY daysOfUpdate ASC;"; //DESC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+
+  public function rent_select_post_with_update_min($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $dateNow = $inStr["dateNow"];
+    //var_dump($inStr);
+    //id,code,type,street,dist,city,project,utilities,duration,dayUpdate 	content,price,area,bath,bed,ownerr,codeHost 	
+    $sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,ownerr,codeHost,DATEDIFF(duration,'$dateNow') AS daysOfDuration,DATEDIFF('$dateNow',dayUpdate) AS daysOfUpdate FROM RentVnGate ORDER BY daysOfUpdate ASC;"; //DESC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+
+  public function rent_get_number_photo_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $code = $inStr["code"];
+    $nameMax = "0";
+    foreach (glob("../../MEDIA/HINH_RENT_VNGATE/$code/Photos" . '/*.*') as $file) {
+      //$list[] = substr($file, strrpos($file, "/") + 1);
+      $name = substr($file, strrpos($file, "/") + 1);
+      $name = str_replace(".jpg", "", $name);
+      $name = (int)$name;
+      if ($name > 0) {
+        $name > $nameMax && $nameMax = $name;
+      }
+    }
+    $re = ["photoMax" => $nameMax];
+    echo json_encode($re, JSON_UNESCAPED_UNICODE);
+  }
+
+  //--------------bds-----------------------------
+  public function bds_select_with_search_order_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $searchStr = $inStr["searchStr"];
+    $dateNow = $inStr["dateNow"];
+    //var_dump($inStr);
+    //$sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,codeHost FROM RentVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR typer LIKE '%$searchStr%' OR street LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR project LIKE '%$searchStr%' OR utilities LIKE '%$searchStr%' OR content LIKE '%$searchStr%' ORDER BY code DESC;";
+    $sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,codeHost,DATEDIFF(duration,'$dateNow') AS daysOfDuration,DATEDIFF('$dateNow',dayUpdate) AS daysOfUpdate FROM BdsVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR typer LIKE '%$searchStr%' OR street LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR project LIKE '%$searchStr%' OR utilities LIKE '%$searchStr%' OR content LIKE '%$searchStr%' ORDER BY id DESC;"; //DESC ASC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+  public function bds_select_price_range_order_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $priceMin = $inStr["priceMin"];
+    $priceMax = $inStr["priceMax"];
+    $dateNow = $inStr["dateNow"];
+    //var_dump($inStr);
+    //$sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,codeHost FROM RentVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR typer LIKE '%$searchStr%' OR street LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR project LIKE '%$searchStr%' OR utilities LIKE '%$searchStr%' OR content LIKE '%$searchStr%' ORDER BY code DESC;";
+    $sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,ownerr,codeHost,DATEDIFF(duration,'$dateNow') AS daysOfDuration,DATEDIFF('$dateNow',dayUpdate) AS daysOfUpdate FROM BdsVnGate WHERE price BETWEEN $priceMin AND $priceMax ORDER BY id DESC;"; //DESC ASC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+  public function bds_insert_new_id($jsonStr)
+  {
+    $jsonStr2 = json_decode($jsonStr, true); //return a array
+    //{"code":"R0007","typer":"Studio","street":"Ngo Tat To Str","dist":"Binh Thanh Dist","city":"HCMC","project":"","utilities":"","duration":"2023-01-03","dayUpdate":"2022-12-27","content":"Free fee all except electricity 4k/kwh, water 100k/person. Fully furnished, 3rd floor, stairs.","price":"6000","area":"25","bath":"1","bed":"1","ownerr":"+84888260793 NANA HOUSE Bình Thạnh 197 ngô tất tố lầu 3","codeHost":""}
+    $code = $jsonStr2["code"];
+    $typer = $jsonStr2["typer"];
+    $street = $jsonStr2["street"];
+    $dist = $jsonStr2["dist"];
+    $city = $jsonStr2["city"];
+    $project = $jsonStr2["project"];
+    $utilities = $jsonStr2["utilities"];
+    $duration = $jsonStr2["duration"];
+    $dayUpdate = $jsonStr2["dayUpdate"];
+    $content = $jsonStr2["content"];
+    $price = $jsonStr2["price"];
+    $area = $jsonStr2["area"];
+    $bath = $jsonStr2["bath"];
+    $bed = $jsonStr2["bed"];
+    $ownerr = $jsonStr2["ownerr"];
+    $codeHost = $jsonStr2["codeHost"];
+    $isTrue = $this->check_code($code);
+    if ($isTrue) {
+      $sql = "INSERT INTO BdsVnGate (code, typer, street, dist, city, project, utilities, duration, dayUpdate, content, price, area, bath, bed, ownerr, codeHost) VALUES ('$code','$typer','$street','$dist','$city','$project','$utilities','$duration','$dayUpdate','$content','$price','$area','$bath','$bed','$ownerr','$codeHost');";
+      $this->connect();
+      if ($this->conn1) {
+        $query = mysqli_query($this->conn1, $sql);
+        if ($query) {
+          echo "insert thanh cong";
+        }
+      } else {
+        $error = ["error" => "ket noi msql loi."];
+        echo json_encode($error);
+      }
+      $this->close();
+    }
+  }
+  public function bds_get_number_photo_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $code = $inStr["code"];
+    $nameMax = "0";
+    foreach (glob("../../MEDIA/HINH_BDS_VNGATE/$code/Photos" . '/*.*') as $file) {
+      //$list[] = substr($file, strrpos($file, "/") + 1);
+      $name = substr($file, strrpos($file, "/") + 1);
+      $name = str_replace(".jpg", "", $name);
+      $name = (int)$name;
+      if ($name > 0) {
+        $name > $nameMax && $nameMax = $name;
+      }
+    }
+    $re = ["photoMax" => $nameMax];
+    echo json_encode($re, JSON_UNESCAPED_UNICODE);
+  }
+
   // Hàm lấy dữ liệu
   public function fetch_assoc($sql = null, $isRow)
   {

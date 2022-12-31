@@ -13,12 +13,13 @@ import NavBar from "./comp/NavBar";
 import PanelSearch from "./comp/PanelSearch";
 import PanelFavorite from "./comp/PanelFavorite";
 import AlertDialog from "./comp/AlertDialog";
-
+import PanelHuongDan from "./comp/PanelHuongDan";
 const cx = classNames.bind(styles);
-
+let timerMain;
 export default function BDS_TWITTER() {
+  //localStorage.clear("bdsFavorite");
   const [postGet, setPostGet] = useState([]);
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState("");
   const [navType, setNavType] = useState("");
   const [index, setIndex] = useState(1);
   const [isPanel, setIsPanel] = useState(false);
@@ -26,6 +27,7 @@ export default function BDS_TWITTER() {
   const [searchPayload, setSearchPayload] = useState("");
   const [full, setFull] = useState("");
   const [panelShow, setPanelShow] = useState("no");
+  const [isAlertMain, setIsAlertMain] = useState("");
   //-----------------get data server-----------------
   function handleSelectAll() {
     const data2 = { method: "selectall", searchValue: searchPayload };
@@ -47,19 +49,28 @@ export default function BDS_TWITTER() {
       }
     });
   }
-  console.log("re-render main");
   useEffect(() => {
-    console.log("re-render", searchPayload);
     handleSelectAll(searchPayload);
     return () => {};
-  }, [isReLoad, searchPayload]);
+  }, [isReLoad]);
+  useEffect(() => {
+    setPosts("");
+    handleSelectAll(searchPayload);
+    return () => {};
+  }, [searchPayload]);
+
   //----------------render post---------------
   const renderPosts = () => {
     if (postGet != null) {
       const map1 = postGet.map((v, i) => (
         <PostThum
           key={i}
-          props={{ data: v, setIsReLoad: setIsReLoad, isReLoad: isReLoad }}
+          props={{
+            data: v,
+            setIsReLoad: setIsReLoad,
+            isReLoad: isReLoad,
+            timerMain: timerMain,
+          }}
         />
       ));
       setPosts(map1);
@@ -71,7 +82,10 @@ export default function BDS_TWITTER() {
     renderPosts();
     return () => {};
   }, [postGet]);
-  //--------------show panel----------
+  //--------------xoa ket qua tim----------
+  const handleXoaKq = () => {
+    setSearchPayload("");
+  };
   //---------------------------------------
   const arr = [];
   for (let i = 0; i < 10; i++) {
@@ -138,10 +152,58 @@ export default function BDS_TWITTER() {
     );
   };
   //--------------reload main---------------------------
-
+  const BtnReloadAll = () => {
+    return (
+      <>
+        <div className={cx("BtnReloadAll")}>
+          <button className="btn btn-danger" onClick={handleXoaKq}>
+            Xóa kết quả
+          </button>
+        </div>
+      </>
+    );
+  };
+  const SearchNull = () => {
+    return (
+      <>
+        <p className={cx("searchNull")}>
+          Không có kết quả nào được tìm thấy. Hãy thử tìm lại hoặc nhấn nút Xóa
+          kết quả tìm kiếm.
+        </p>
+      </>
+    );
+  };
+  const Loading = () => {
+    return (
+      <>
+        <div className={cx("Loading")}>
+          <div className="spinner-grow" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>{" "}
+          Đang tải...
+        </div>
+      </>
+    );
+  };
   //-----------------return main-------------------------
   return (
     <>
+      {/* <AlertDialog
+        props={{
+          content: "Mục này đã được thêm vào danh sách yêu thích của bạn",
+        }}
+      /> */}
+      {posts == "" && <Loading />}
+
+      {panelShow == "readme" && (
+        <PanelHuongDan
+          props={{
+            setPanelShow: setPanelShow,
+            setIsReLoad: setIsReLoad,
+            isReLoad: isReLoad,
+          }}
+        />
+      )}
       {panelShow == "favorite" && (
         <PanelFavorite
           props={{
@@ -166,29 +228,12 @@ export default function BDS_TWITTER() {
       )}
 
       {/* thu nghiem */}
-      {false && (
-        <Panel
-          props={{
-            name: "favorite",
-            setIsReLoad: setIsReLoad,
-            isReLoad: isReLoad,
-            setSearchPayload: setSearchPayload,
-            searchPayload: searchPayload,
-            setIsPanel: setIsPanel,
-            isPanel: isPanel,
-          }}
-        />
-      )}
+
       <div className={cx("BDS_TWITTER")}>
-        <hr></hr>
-        {posts != null ? (
-          posts
-        ) : (
-          <p className={cx("searchNull")}>
-            Không có kết quả nào được tìm thấy. Hãy thử tìm lại hoặc nhấn nút
-            Xóa kết quả tìm kiếm.
-          </p>
-        )}
+        <div className={cx("spaceTop")}></div>
+        {posts != null ? posts : <SearchNull />}
+
+        {searchPayload != "" && <BtnReloadAll />}
         <NavBar
           props={{
             setIsPanel: setIsPanel,

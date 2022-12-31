@@ -4,8 +4,9 @@ import styles from "./s.module.scss";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CloseIcon from "@mui/icons-material/Close";
 import AlertDialog from "../AlertDialog";
+import { v4 } from "uuid";
 const cx = classNames.bind(styles);
-let timer;
+
 export default function PostThum(props) {
   console.log("rerender postthum");
   const [isPopUp, setIsPopUp] = useState(false);
@@ -18,7 +19,9 @@ export default function PostThum(props) {
   const price = post.Content.price;
   const city = post.Content.city;
   let content = post.Content.content;
-  if (content.length > 130) {
+  //console.log(code, content.length, content);
+
+  if (content.length > 100) {
     content = content.substr(0, 100) + " ...";
   }
   const typeBds = post.Content.typeBds;
@@ -143,7 +146,6 @@ export default function PostThum(props) {
       const map2 = arrPhoto.map((v, i) => (
         <img alt="Avatar" className={cx("photo2")} src={v}></img>
       ));
-      console.log(555, map2);
       return (
         <>
           <div className={cx("BdsContent")}>
@@ -156,12 +158,22 @@ export default function PostThum(props) {
               </div>
               <div className="row">
                 <div className="col-12">
-                  <h4 className={cx("title2")}>Hình ảnh</h4>
+                  <h4 className={cx("title2")}>
+                    Hình ảnh <span>(Mẹo: Dùng 2 ngón tay để phóng to ảnh)</span>
+                  </h4>
+
                   {map2}
                 </div>
               </div>
             </div>
           </div>
+        </>
+      );
+    };
+    const SpaceBottom = () => {
+      return (
+        <>
+          <div className={cx("SpaceBottom")}></div>
         </>
       );
     };
@@ -171,11 +183,15 @@ export default function PostThum(props) {
           <div className={cx("wrapper")}>
             <div className={cx("header")} onClick={handleClose}>
               <p>
+                Tìm với ID: <b>{code}</b> - Xem nhiều nhà đất khác tại:
+                <b> bds.vngate.top</b>
+              </p>
+              {/* <p>
                 Truy cập{" "}
                 <span style={{ fontWeight: "bold" }}>bds.vngate.top</span> và
                 tìm với ID:{" "}
                 <span style={{ fontWeight: "bold" }}>{data2.code}</span>
-              </p>
+              </p> */}
               <div className={cx("close2")}>
                 <CloseIcon></CloseIcon>
               </div>
@@ -185,6 +201,7 @@ export default function PostThum(props) {
               {MainPhoto()}
               {BdsGia()}
               {BdsContent()}
+              {SpaceBottom()}
             </div>
             <div className={cx("footer2")} onClick={handleClose}></div>
             <div className={cx("close")} onClick={handleClose}>
@@ -199,40 +216,35 @@ export default function PostThum(props) {
   //--------add favorite-----------
   const handleAddFavorite = () => {
     let localData = localStorage.getItem("bdsFavorite");
-    if (localData.length > 2) {
-      console.log("khac null");
+    if (localData != null) {
+      //console.log("localdata khac null");
       localData = JSON.parse(localData);
-      // kiem tra item
       const index = localData.indexOf(code);
       if (index > -1) {
-        console.log("da co roi");
+        //console.log("item da co trong favorite");
         setIsAlert("favorite");
         setTypeFavorite("yes");
-        timer = setTimeout(() => {
-          clearTimeout(timer);
+        ptProps.timerMain = setTimeout(() => {
+          clearTimeout(ptProps.timerMain);
           setIsAlert("");
         }, 2000);
-        //GLOBAL_ALERT_CONTENT = "This apartment has added to Favorite";
-        //console.log(GLOBAL_ALERT_CONTENT);
-        //setIsArlert(true);
       } else {
-        let dataTemp2 = JSON.parse(localData);
-        dataTemp2 = [...dataTemp2, code];
+        let dataTemp2 = [...localData, code];
         dataTemp2 = JSON.stringify(dataTemp2);
         localStorage.setItem("bdsFavorite", dataTemp2);
+        setTypeFavorite("yes");
       }
     } else {
       let dataTemp = [code];
       dataTemp = JSON.stringify(dataTemp);
       localStorage.setItem("bdsFavorite", dataTemp);
       setTypeFavorite("yes");
-      console.log("set yes");
     }
   };
   //--------check favorite-----------
   const checkFavorite = () => {
     let localData = localStorage.getItem("bdsFavorite");
-    if (localData.length > 2) {
+    if (localData != null) {
       console.log("khac null");
       localData = JSON.parse(localData);
       // kiem tra item
@@ -240,8 +252,11 @@ export default function PostThum(props) {
       if (index > -1) {
         console.log("da co roi");
         setTypeFavorite("yes");
+      } else {
+        setTypeFavorite("no");
       }
     } else {
+      console.log("localstore null chua ton tai");
       setTypeFavorite("no");
     }
   };
@@ -257,16 +272,17 @@ export default function PostThum(props) {
         <AlertDialog
           /* props={{ content: "This apartment has added to Favorite" }} */
           props={{
-            content:
-              "Đất(căn nhà) này đã được thêm vào danh sách yêu thích của bạn",
+            content: "Mục này đã được thêm vào danh sách yêu thích của bạn",
           }}
         />
       )}
-      {isPopUp && <PopUp3 props={{ data: post, setIsPopUp: setIsPopUp }} />}
+      {isPopUp && (
+        <PopUp3 key={v4()} props={{ data: post, setIsPopUp: setIsPopUp }} />
+      )}
       <div className={cx("PostThum", "mono")}>
         <div className={cx("Header")}>
           <div className={cx("Avatar")}></div>
-          <div className={cx("TitleL")} onClick={checkFavorite}>
+          <div className={cx("TitleL")}>
             {code} - {typeBds}
           </div>
           <div className={cx("TitleS")}>• {dayUpdate}</div>
@@ -294,8 +310,12 @@ export default function PostThum(props) {
             Chi tiết
           </div>
           <div className={cx("CopyRight")}>
-            <p>
+            {/* <p>
               <b>bds.vngate.top</b> - tìm với ID: <b>{code}</b>
+            </p> */}
+            <p>
+              Tìm với ID: <b>{code}</b> - Xem nhiều nhà đất khác tại:
+              <b> bds.vngate.top</b>
             </p>
           </div>
         </div>

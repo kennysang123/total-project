@@ -67,6 +67,22 @@ export default class GlobalClass {
         return { "nhan fail:": err };
       });
   }
+
+  async GET_loadDataByAPI(url) {
+    const urlsub = url;
+
+    return await fetch(urlsub, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        return json;
+      })
+      .catch((err) => {
+        return { "nhan fail:": err };
+      });
+  }
+
   hostLink() {
     return "host link";
   }

@@ -8,7 +8,6 @@ let value2;
 let value3 = "Sẵn sàng tìm kiếm.";
 export default function PanelSearch(props) {
   const d = props.props;
-  console.log(77777, d);
   ///----search element--------
   let timer;
   const SearchPanel = () => {
@@ -40,7 +39,7 @@ export default function PanelSearch(props) {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h6>Nhập vào ID cần tìm: private</h6>
+                <h6>Xem H.Dẫn Mục 1</h6>
               </div>
               <div className={cx("col-12")}>
                 <div className="input-group mb-3">
@@ -60,9 +59,14 @@ export default function PanelSearch(props) {
                 </div>
                 <div>{searchStatus}</div>
                 <hr></hr>
-                <Button onClick={handleXoaKqTk} appearance="danger">
-                  Xóa kết quả tìm kiếm
-                </Button>
+                {/* <Button onClick={handleXoaKqTk} appearance="danger">
+                  Xóa kết quả
+                </Button> */}
+                <div className={cx("BtnXoaKqContent")}>
+                  <button className="btn btn-danger" onClick={handleXoaKqTk}>
+                    Xóa kết quả
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -86,7 +90,6 @@ export default function PanelSearch(props) {
               <span className="material-icons">clear</span>
             </div>
           </div>
-          {console.log(4444, d)}
           {<SearchPanel />}
         </div>
       </div>
