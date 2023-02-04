@@ -268,6 +268,16 @@ export default function BDS_VNGATE() {
       </>
     );
   };
+  //------------pop up check----------------------
+  const PopUpDetails = () => {
+    return (
+      <>
+        <div className={cx("PopUpDetails")}>
+          <div className={cx("wrapper")}>xin chao</div>
+        </div>
+      </>
+    );
+  };
   //-----------------return main-------------------------
   return (
     <>
@@ -278,6 +288,7 @@ export default function BDS_VNGATE() {
       /> */}
       {/* {isLoadAllData === true && <AllDataLoaded />} */}
       {/* {searchPayload === "onlyxxx!" && <DeleteFilter />} */}
+      {/*  <PopUpDetails /> */}
 
       {panelShow == "readme" && (
         <PanelHuongDan

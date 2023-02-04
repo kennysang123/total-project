@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON BDS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    #f1 {
+      height: 200px;
+    }
+
+    #nut {
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Open this select menu</option>
+          <option value="+84933995905 28C ĐƯỜNG 60, THẢO ĐIỀN TAKO HOMY">+84933995905 28C ĐƯỜNG 60, THẢO ĐIỀN TAKO HOMY
+          </option>
+          <option value="+84888260793 NANA HOUSE Bình Thạnh">+84888260793 NANA HOUSE Bình Thạnh</option>
+          <option value="CHDV Q1 - 165/40 Nguyễn Thái B">CHDV Q1 - 165/40 Nguyễn Thái B</option>
+          <option value="xxxx">xxxxx</option>
+          <option value="xxxx">xxxxx</option>
+          <option value="xxxx">xxxxx</option>
+          <option value="xxxx">xxxxx</option>
+        </select>
+      </div>
+      <div class="col-md-12">
+        <div class="input-group">
+          <span class="input-group-text">Text</span>
+          <textarea class="form-control" aria-label="With textarea" id="f1"></textarea>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div id="nut">
+          <button class="btn btn-outline-primary copy">Preview</button>
+          <button class="btn btn-outline-primary insert">Insert</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+
+    const dateyyyymmdd = () => {
+      const datenow2 = new Date();
+      const year = datenow2.getFullYear();
+      let month = datenow2.getMonth();
+      month = Number(month) + 1;
+      if (month <= 9) {
+        month = "0" + month;
+      }
+      const date = datenow2.getDate();
+      const dateStr = `${year}-${month}-${date}`;
+      return dateStr;
+    };
+    const dateStr = dateyyyymmdd();
+    //Studio, Separate Room, Duplex, Penthouse, Whole House, Villa 
+    //"utilities": ["Air-conditioner", "Allow Pets", "Bed", "balcony", "Cooker-Hood", "Dining-Table", "Dining-Substances", "Dressing-Table", "Dryer", "Elevator", "Fridge", "Garage", "Garden", "Gym", "Hot-Water", "Internet-Wifi", "Ironing-Board", "Jacuzzi", "Lobby", "Nice-View", "Oven", "Parking", "Rooftop", "Sauna-Room", "Security-Camera", "Shower", "Sofa", "Stove", "Swimming-Pool", "TV", "Wardrobe", "Washing-Machine", "Windown", "Working-Desk"],
+
+    //Tất cả chung 1 chính sách : điện 4k , nước 100k/ người - Chỉ ở 1-2 người tối đa 3 duy nhất 1-2 xe FREEE HẾT DỊCH VỤ : dọn dẹp,wifi, thay drap , bảo trì....
+    const typeBds = {
+      datnen: "Đất nền",
+      nhapho: "Nhà phố",
+      bietthu: "Biệt thự",
+    }
+    const cityBds = {
+      hcm: "Hồ Chí Minh",
+      bd: "Bình Dương",
+      la: "Long An",
+    }
+    const distBds = {
+      hcmQ1: "Quận 1",
+      hcmQ2: "Quận 2",
+      hcmQ3: "Quận 3",
+      hcmQ4: "Quận 4",
+      hcmQ5: "Quận 5",
+      hcmQ6: "Quận 6",
+      hcmQ7: "Quận 7",
+      hcmQ8: "Quận 8",
+      hcmQ9: "Quận 9",
+      hcmQ10: "Quận 10",
+      hcmQ11: "Quận 11",
+      hcmQ12: "Quận 12",
+      hcmQBinhThanh: "Quận Bình Thạnh",
+      hcmQPhuNhuan: "Quận Phú Nhuận",
+      hcmQBinhTan: "Quận Bình Tân",
+      hcmQTanPhu: "Quận Tân Phú",
+      hcmQThuDuc: "Quận Thủ Đức",
+      laCanDuoc: "Huyện Cần Đước",
+      bdDiAn: "Dĩ An",
+
+
+    }
+    const ownerBds = {
+      Andy: {
+        phone: "+84932171895",
+        string: "Andy bds"
+      },
+      PhamNhuY: {
+        phone: "",
+        string: "Phạm Như Ý"
+      },
+      Jenny: {
+        phone: "+84902835479",
+        string: "HS0001 - Jenny"
+      },
+      hoNgocTien: {
+        phone: "",
+        string: "Ngọc Tiền bds hh1%"
+      },
+      hoNgocThaoCr: {
+        phone: "",
+        string: "Ngoc Thao Cr bds hh1%"
+      },
+    }
+    const streetBds = {
+      shcmTranQuangKhai: "Trần Quang Khải",
+      shcmPhanDinhPhung: "Phan Đình Phùng",
+      shcmNguyenTrongTuyen: "Nguyễn Trọng Tuyển",
+      shcmLeQuangDinh: "Lê Quang Định",
+      shcmBuiDinhTuy: "Bùi Đình Túy",
+      shcm0: "",
+      shcmHoangVanThu: "Hoàng Văn Thụ",
+      shcmXoVietNgheTinh: "Xô Viết Nghệ Tĩnh",
+    }
+    const bathBds = {
+      bath0: "",
+      bath1: 1,
+      bath2: 2,
+      bath3: 3,
+      bath4: 4,
+      bath5: 5,
+      bath6: 6,
+      bath7: 7,
+      bath8: 8,
+      bath19: 19,
+    }
+    const bedBds = {
+      bed0: "",
+      bed1: 1,
+      bed2: 2,
+      bed3: 3,
+      bed4: 4,
+      bed5: 5,
+      bed6: 6,
+      bed7: 7,
+      bed8: 8,
+      bed19: 19,
+    }
+
+
+    const json = {
+      "code": "B0022",
+      "content": "Diện tích nhà + đất 1000m2, 4PN 5WC. Giảm chút lộc cho người thiện chí hữu duyên",
+      "typer": typeBds.bietthu,
+      "street": streetBds.shcm0,
+      "dist": distBds.bdDiAn,
+      "city": cityBds.bd,
+      "bed": bedBds.bed4,
+      "bath": bathBds.bath5,
+      "ownerr": JSON.stringify(ownerBds.hoNgocThaoCr),
+      "codeHost": "",
+      "price": 35000,
+      "area": "",
+      "dayUpdate": dateStr,
+      //"project": "",
+      //"utilities": "",
+      //"duration": "",
+      //"content": "electricity 4k/kwh, water 200k/person, parking 200k/slot. Fully furnished,elevator, free clearning 2 times/week, change drap 1 times/week",
+    }
+    console.log(json.ownerr)
+    const url = "https://vngate.top/API/BdsPHP/out.php?pageupdate=bds"
+    const jsonstr = JSON.stringify(json)
+
+
+    async function UpdateData(url, data, PrivateKey) {
+      const urlsub = url;
+      let datasend = {
+        dataStr: JSON.stringify(data),
+        Method: "PUT",
+        PrivateKey: PrivateKey,
+      };
+      return await fetch(urlsub, {
+        method: "POST",
+        body: JSON.stringify(datasend),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          return json;
+        })
+        .catch((err) => console.log("Nhan that bai, loi: ", err));
+    }
+    //---------------jquery---------------------------------
+    $(document).ready(function () {
+      $(".copy").click(function () {
+        $("#f1").val(jsonstr);
+
+      });
+      $(".insert").click(function () {
+        UpdateData(url, json, "home")
+
+      });
+    });
+
+  </script>
+</body>
+
+
+</html>

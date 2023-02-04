@@ -252,41 +252,38 @@ export default function PostThum(props) {
       const chitiet = contentFull;
       //https://vngate.top/API/BdsPHP/out.php?sub=rent_get_number_photo_by_code/{%22code%22:%22B0014%22,%22a%22:2222222}/
       const cla = new GlobalClass();
-      let requestMethod = "bds_get_number_photo_by_code";
-      let requestParam = {
-        code: code,
-        paramOther: 2222222222222,
-      };
-      requestParam = JSON.stringify(requestParam);
-      const d = cla.GET_loadDataByAPI(
-        `https://vngate.top/API/BdsPHP/out.php?sub=${requestMethod}/${requestParam}/`
-      );
-      d.then((res) => {
-        if (res != null) {
-          //console.log(4444444444444444, res);
-          setPhotoMax(res.photoMax);
-        }
-      });
+      //------------render photos-------------
+      const renderPhotoList = () => {
+        let requestMethod = "bds_get_photo_listname_by_code";
+        let requestParam = {
+          code: code,
+        };
+        requestParam = JSON.stringify(requestParam);
 
-      const renderPhoto = (v) => {
-        const arrPhoto = [];
-        for (let i = 1; i <= v; i++) {
-          const urlPhoto = `https://vngate.top/MEDIA/HINH_BDS_VNGATE/${code}/Photos/${i}.jpg`;
-          arrPhoto.push(urlPhoto);
-        }
-        const map2 = arrPhoto.map((v, i) => (
-          <img alt="Avatar" className={cx("photo2")} src={v}></img>
-        ));
-        return map2;
+        const result = cla.getPhotoListNamesFromServer(
+          `https://vngate.top/API/BdsPHP/out.php?sub=${requestMethod}/${requestParam}/`
+        );
+        result.then((res) => {
+          if (res != null) {
+            const map2 = res.list.map((v, i) => (
+              <img
+                key={i}
+                alt="Avatar"
+                className={cx("photo2")}
+                src={`https://vngate.top/MEDIA/HINH_BDS_VNGATE/${code}/Photos/${v}`}
+              ></img>
+            ));
+            console.log("list photo", map2);
+            setDisPlayPhoto(map2);
+          }
+        });
       };
 
       useEffect(() => {
-        const temp = renderPhoto(photoMax);
-        console.log(55555, temp);
-        setDisPlayPhoto(temp);
-
+        renderPhotoList();
         return () => {};
-      }, [photoMax]);
+      }, []);
+      //--------------------------------------
 
       return (
         <>

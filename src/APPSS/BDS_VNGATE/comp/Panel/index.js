@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState } from "react";
 import { v4 } from "uuid";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
-import Button from "@atlaskit/button";
 
 const cx = classNames.bind(styles);
 
@@ -89,9 +88,9 @@ export default function Panel(props) {
                 </div>
                 <div>{searchStatus}</div>
                 <hr></hr>
-                <Button onClick={handleXoaKqTk} appearance="danger">
+                <button onClick={handleXoaKqTk} className="btn btn-danger">
                   Xóa kết quả tìm kiếm
-                </Button>
+                </button>
               </div>
             </div>
           </div>

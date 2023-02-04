@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "@atlaskit/button";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
 const cx = classNames.bind(styles);

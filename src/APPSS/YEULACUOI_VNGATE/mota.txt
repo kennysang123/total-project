@@ -1,0 +1,22 @@
+BẢNG MÔ TẢ THUẬT TOÁN CỦA BDS TWITTER
+
+1.  Chức năng auto reload ở PostThum để check icon favorite khi nhấn nút xóa item trong danh sách yêu thích:
+  - Truyền state isReLoad và setIsReLoad từ BDS_TWITTER component vào->PanelFavorite ->FavoriteItem. Khi nhấn nút đóng PanelFavorite thì handle setIsReLoad(!isReLoad) qua props.
+  - Từ BDS_TWITTER component truyền state isReLoad vào component PostThum. Trong PostThum đặt isReLoad là depedense của useEffect chạy hàm checkFavorite.
+
+2.	Chức năng add favorite:
+  - tạo hàm addfavorite. Trong hàm này thực hiện 2 việc kiểm tra và add.
+    + Việc kiểm tra: kiểm tra chuổi lưu trong local có không. nếu có thì đã được tạo thì thực hiện tìm kiếm fa. Nếu không thì add mới. 
+    + Nếu có rồi thì kiểm tra xem đã có item cần adđ chưa. nếu có thì thông báo item đã tồn tại. nếu chưa thì add mới.
+
+3.	Chức năng load items fa vô list khi mở PanelFavorite:
+  - Khi mở PanelFavorite thì chạy lệnh loadItems. load từ localStore vào var rồi JSON.pase thành mảng, xong dùng hàm map để list các item vào danh sách fa.
+
+4.	Chức năng tìm kiếm thông minh:
+  - Khi nhập dữ liệu thì gọi hàm handleSearch. Tạo một biến let timer ngoài hàm PanelSearch. Trong hàm handleSearch gán biến timer cho 1 setTimeOut mới với time là 2000ms. trong hàm đợi của setTimeOut đặt hàm clearTimeOut rồi state setPayLoad từ BDS_TWITTER component qua sprops. Nếu người dùng nhập liên tục thì timer bị tạo mới liên tục trước 2000ms. khi người dùng nhập xong thì hơn 2000ms hàm con sẽ chạy và gửi dữ liệu về BDS_TWITTER component qua state. state thay đổi, state này nằm trong depedense của useEffect gọi hàm loaddatafromserver làm BDS_TWITTER component rerender và lấy dữ liệu mới về từ server. Sql sử dụng phương thức LIKE %giatri% để tìm kiếm tương đối.
+
+5. Chức năng tắt mở panel:
+  - Mỗi loại 1 panel riêng gọi thông qua state panel đó ở BDS_TWITTER component. vd gọi PanelSearch thì như sau: { typePanel == "search" && <PanelSearch/> }
+
+6.  Chức năng hiện thông báo:
+  - Tạo 1 biến let timerMain ngoài hàm BDS_TWITTER component. Đưa biến này vào PostThum component qua props rồi dùng biến này đặt cho biến setTimeOut. Chi tiết PostThum 200.

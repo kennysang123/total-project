@@ -15,9 +15,9 @@ export default function PanelFavorite(props) {
     if (item2 != null) {
       item2 = JSON.parse(item2);
     } else {
-      const cell1 = JSON.stringify({ code: "vd1", price: 1234 });
-      const cell2 = JSON.stringify({ code: "vd2", price: 12333 });
-      item2 = [cell1, cell2];
+      const cell1 = ["B0022"];
+
+      item2 = [cell1];
     }
     return item2;
   }

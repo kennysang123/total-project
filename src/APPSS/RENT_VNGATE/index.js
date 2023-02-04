@@ -45,15 +45,18 @@ export default function RENT_VNGATE() {
       if (month <= 9) {
         month = "0" + month;
       }
-      const date = datenow2.getDate();
+      let date = datenow2.getDate();
+      date = Number(date);
+      if (date <= 9) {
+        date = "0" + date;
+      }
       const dateStr = `${year}-${month}-${date}`;
       return dateStr;
     };
     const dateStr = dateyyyymmdd();
-    let requestMethod = "rent_select_post_with_update_min";
+    let requestMethod = "rent_select_post_with_new_code";
     let requestParam = {
       dateNow: dateStr,
-      paramOther: 2222222222222,
     };
 
     if (searchPayload != "" && searchPayload != "onlyxxx!") {

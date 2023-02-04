@@ -214,6 +214,33 @@ class  Cbds
     }
     $this->close();
   }
+  public function rent_select_post_with_new_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $dateNow = $inStr["dateNow"];
+    //var_dump($inStr);
+    //id,code,type,street,dist,city,project,utilities,duration,dayUpdate 	content,price,area,bath,bed,ownerr,codeHost 	
+    $sql = "SELECT id,code,typer,street,dist,city,project,utilities,duration,dayUpdate,content,price,area,bath,bed,ownerr,codeHost,DATEDIFF(duration,'$dateNow') AS daysOfDuration,DATEDIFF('$dateNow',dayUpdate) AS daysOfUpdate FROM RentVnGate ORDER BY id DESC;"; //DESC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
 
   public function rent_get_number_photo_by_code($value)
   {
@@ -232,6 +259,23 @@ class  Cbds
     }
     $re = ["photoMax" => $nameMax];
     echo json_encode($re, JSON_UNESCAPED_UNICODE);
+  }
+  public function rent_get_photo_listname_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $code = $inStr["code"];
+    $nameMax = "0";
+    $listname = [];
+    foreach (glob("../../MEDIA/HINH_RENT_VNGATE/$code/Photos" . '/*.jpg') as $file) {
+      //$list[] = substr($file, strrpos($file, "/") + 1);
+      $name = substr($file, strrpos($file, "/") + 1);
+      $listname[] =  $name;
+    }
+    //var_dump($listname);
+    //$re = ["photoMax" => $nameMax];
+    $result = array("list" => $listname, "status" => "ok");
+    echo json_encode($result, JSON_UNESCAPED_UNICODE);
   }
 
   //--------------bds-----------------------------
@@ -344,6 +388,89 @@ class  Cbds
     }
     $re = ["photoMax" => $nameMax];
     echo json_encode($re, JSON_UNESCAPED_UNICODE);
+  }
+
+  public function bds_get_photo_listname_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $code = $inStr["code"];
+    $nameMax = "0";
+    $listname = [];
+    foreach (glob("../../MEDIA/HINH_BDS_VNGATE/$code/Photos" . '/*.jpg') as $file) {
+      //$list[] = substr($file, strrpos($file, "/") + 1);
+      $name = substr($file, strrpos($file, "/") + 1);
+      $listname[] =  $name;
+    }
+    //var_dump($listname);
+    //$re = ["photoMax" => $nameMax];
+    $result = array("list" => $listname, "status" => "ok");
+    echo json_encode($result, JSON_UNESCAPED_UNICODE);
+  }
+  //-----------------ketdoi-------------------------
+  public function ketdoi_get_photo_listname_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $code = $inStr["code"];
+    $nameMax = "0";
+    $listname = [];
+    foreach (glob("../../MEDIA/HINH_KETDOI_VNGATE/$code/Photos" . '/*.jpg') as $file) {
+      //$list[] = substr($file, strrpos($file, "/") + 1);
+      $name = substr($file, strrpos($file, "/") + 1);
+      $listname[] =  $name;
+    }
+    //var_dump($listname);
+    //$re = ["photoMax" => $nameMax];
+    $result = array("list" => $listname, "status" => "ketdoi" . $code);
+    echo json_encode($result, JSON_UNESCAPED_UNICODE);
+  }
+  public function ketdoi_select_with_search_order_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $searchStr = $inStr["searchStr"];
+    $dateNow = $inStr["dateNow"];
+    /* 
+    id INT NOT NULL AUTO_INCREMENT,
+	code TEXT NULL,
+	namex TEXT NULL,
+	sex TEXT NULL,
+	birthday TEXT NULL,
+	age INT NULL,
+	verify TEXT NULL,
+	dist TEXT NULL,
+	city TEXT NULL,
+	country TEXT NULL,
+	toila TEXT NULL,
+	timnguoi TEXT NULL,
+	facebook TEXT NULL,
+	telegram TEXT NULL,
+	whatsapp TEXT NULL,
+	twitter TEXT NULL,
+	instagram TEXT NULL,
+	linex TEXT NULL,
+	PRIMARY KEY (id)
+    */
+    $sql = "SELECT id,code,namex,sex,birthday,age,verify,dist,city,country,toila,timnguoi,facebook,telegram,whatsapp,twitter,instagram,linex FROM KetDoiVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR namex LIKE '%$searchStr%' OR country LIKE '%$searchStr%' ORDER BY id DESC;"; //DESC ASC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
   }
 
   // Hàm lấy dữ liệu

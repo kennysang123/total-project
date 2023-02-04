@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "@atlaskit/button";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
 const cx = classNames.bind(styles);
@@ -94,7 +93,7 @@ export default function PanelSearch(props) {
               className="btn btn-outline-primary"
               onClick={handleClickOnly}
             >
-              Only available {"<"} 20 days
+              Only available {"<"} 30 days
             </button>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "@atlaskit/button";
 import classNames from "classnames/bind";
 import styles from "./s.module.scss";
 const cx = classNames.bind(styles);
@@ -49,7 +48,7 @@ export default function PanelSearch(props) {
                   <input
                     type="text"
                     className={cx("inputText", "form-control")}
-                    placeholder="ex. R0005"
+                    placeholder="ex. B0022"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                     onChange={handleSearchId}

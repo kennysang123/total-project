@@ -30,7 +30,7 @@
     top: 0px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: purple;
+    background-color: var(--colorBdsBackGroundNavbar);
     display: flex;
     justify-content: space-around;
   }

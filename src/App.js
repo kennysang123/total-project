@@ -25,20 +25,23 @@ import BDS_TWITTER from "./APPSS/BDS_TWITTER";
 import RENT_VNGATE from "./APPSS/RENT_VNGATE";
 import RENT_VNGATE_UP from "./APPSS/RENT_VNGATE_UP";
 import BDS_VNGATE from "./APPSS/BDS_VNGATE";
+import YEULACUOI_VNGATE from "./APPSS/YEULACUOI_VNGATE";
+import POS from "./APPSS/POS";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          {/* <Route path="/yeulacuoi" element={<YEULACUOI_VNGATE />} />
           <Route path="/cvit" element={<CV_IT />} />
           <Route path="/bdstwitter" element={<BDS_TWITTER />} />
           <Route path="/rent" element={<RENT_VNGATE />} />
-          <Route path="/rentup" element={<RENT_VNGATE_UP />} />
+          <Route path="/rentup" element={<RENT_VNGATE_UP />} /> */}
           {/* <Route path="/" element={<HomeVNGATE />} /> */}
-          <Route path="/" element={<BDS_VNGATE />} />
+          <Route path="/" element={<POS />} />
 
-          <Route path="/edit" element={<EditJson />} />
+          {/* <Route path="/edit" element={<EditJson />} />
           <Route path="/bds" element={<Bds />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/exfull" element={<ExFull />} />
@@ -50,7 +53,7 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/themes" element={<Themes />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} /> */}
         </Routes>
         {/* <NavBarBottom /> */}
       </Router>

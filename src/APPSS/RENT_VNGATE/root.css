@@ -5,9 +5,22 @@
     --colorBlue2: #0079C1;
     /* --colorPrice: #2d49b7; */
     --colorPrice: #2d49b7;
+    --colorTextPrice: white;
+    --colorBackGroundPrice: #212E60;
+    --colorBdsBackGroundNavbar: #212E60;
+    --colorBackGroundIconNavbarHover: #C02126;
+    --colorBdsBackGroundIconNavbarHover: #C02126;
+    --colorTextIconNavbar: white;
+    --colorTextTitlePanel: #212E60;
+    --colorTextSection1: #212E60;
+    --colorTextBodySection: #555;
+    --colorTitlePostThum: #212E60;
+    --colorTitlePostThumSmall: #646262;
+    --colorTitlePostThumSmall: #212E60;
+    --fixBug: transparent;
 }
 
 .colorGreen {
-    color: lime;
-    background-color: #0F00C1;
+    /* color: lime; */
+    background-color: transparent;
 }

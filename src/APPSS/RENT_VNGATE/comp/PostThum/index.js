@@ -7,27 +7,7 @@ import BathroomIcon from "@mui/icons-material/Bathroom";
 import BedroomParentIcon from "@mui/icons-material/BedroomParent";
 import SquareIcon from "@mui/icons-material/Square";
 import SettingsIcon from "@mui/icons-material/Settings";
-/* icon uti */
-import PetsIcon from "@mui/icons-material/Pets";
-import ElevatorIcon from "@mui/icons-material/Elevator";
-import BalconyIcon from "@mui/icons-material/Balcony";
-import BathtubIcon from "@mui/icons-material/Bathtub";
-import NetworkWifiIcon from "@mui/icons-material/NetworkWifi";
-import LocalParkingIcon from "@mui/icons-material/LocalParking";
-import VideocamIcon from "@mui/icons-material/Videocam";
-import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
-import AirIcon from "@mui/icons-material/Air";
-import FlatwareIcon from "@mui/icons-material/Flatware";
-import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
-import Face2Icon from "@mui/icons-material/Face2";
-import KitchenIcon from "@mui/icons-material/Kitchen";
-import HotTubIcon from "@mui/icons-material/HotTub";
-import IronIcon from "@mui/icons-material/Iron";
-import FireplaceIcon from "@mui/icons-material/Fireplace";
-import ShowerIcon from "@mui/icons-material/Shower";
-import ChairIcon from "@mui/icons-material/Chair";
-/* end icon uti */
+
 import AlertDialog from "../AlertDialog";
 import { v4 } from "uuid";
 import GlobalClass from "../../../../components_global/GlobalClass";
@@ -271,7 +251,7 @@ export default function PostThum(props) {
       const chitiet = contentFull;
       //https://vngate.top/API/BdsPHP/out.php?sub=rent_get_number_photo_by_code/{%22code%22:%22B0014%22,%22a%22:2222222}/
       const cla = new GlobalClass();
-      let requestMethod = "rent_get_number_photo_by_code";
+      /* let requestMethod = "rent_get_number_photo_by_code";
       let requestParam = {
         code: "R0005",
         paramOther: 2222222222222,
@@ -285,9 +265,41 @@ export default function PostThum(props) {
           console.log(4444444444444444, res);
           setPhotoMax(res.photoMax);
         }
-      });
+      }); */
+      //https://vngate.top/API/BdsPHP/out.php?sub=rent_get_photo_listname_by_code/{%22code%22:%22R0012%22}/
 
-      const renderPhoto = (v) => {
+      const renderPhotoList = () => {
+        let requestMethod = "rent_get_photo_listname_by_code";
+        let requestParam = {
+          code: code,
+        };
+        requestParam = JSON.stringify(requestParam);
+
+        const result = cla.getPhotoListNamesFromServer(
+          `https://vngate.top/API/BdsPHP/out.php?sub=${requestMethod}/${requestParam}/`
+        );
+        result.then((res) => {
+          if (res != null) {
+            const map2 = res.list.map((v, i) => (
+              <img
+                key={i}
+                alt="Avatar"
+                className={cx("photo2")}
+                src={`https://vngate.top/MEDIA/HINH_RENT_VNGATE/${code}/Photos/${v}`}
+              ></img>
+            ));
+            console.log("list photo", map2);
+            setDisPlayPhoto(map2);
+          }
+        });
+      };
+
+      useEffect(() => {
+        renderPhotoList();
+        return () => {};
+      }, []);
+
+      /* const renderPhoto = (v) => {
         const arrPhoto = [];
         for (let i = 1; i <= v; i++) {
           const urlPhoto = `https://vngate.top/MEDIA/HINH_RENT_VNGATE/${code}/Photos/${i}.jpg`;
@@ -301,11 +313,10 @@ export default function PostThum(props) {
 
       useEffect(() => {
         const temp = renderPhoto(photoMax);
-        console.log(55555, temp);
         setDisPlayPhoto(temp);
 
         return () => {};
-      }, [photoMax]);
+      }, [photoMax]); */
 
       return (
         <>
@@ -583,6 +594,7 @@ export default function PostThum(props) {
             className={cx("Photo")}
             style={{ backgroundImage: `url(${photoMain})` }}
           ></div>
+          {/* <div className={cx("numPhoto")}>+8 photos</div> */}
           <div className={cx("Available")}>
             <p>
               Available:{" "}
