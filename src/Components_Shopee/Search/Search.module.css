@@ -1,0 +1,53 @@
+.wrapper {
+  background: white;
+  height: 400px;
+}
+
+.selection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.selection + .selection {
+  margin-top: 10px;
+}
+
+.selectInput {
+  height: 30px;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  color: black;
+  font-size: 14px;
+}
+.selectInput:focus-visible {
+  outline: 2px solid #0dcaf0;
+}
+
+.labelInput {
+  font-size: 14px;
+  color: gray;
+  font-weight: bold;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item-left {
+  padding: 10px;
+  flex: 50%;
+}
+
+.flex-item-right {
+  padding: 10px;
+  flex: 50%;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 380px) {
+  .flex-item-right,
+.flex-item-left {
+    flex: 100%;
+  }
+}/*# sourceMappingURL=Search.module.css.map */

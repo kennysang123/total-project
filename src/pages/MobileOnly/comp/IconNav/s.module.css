@@ -1,0 +1,28 @@
+.wrapper {
+  /* background-color: red; */
+  position: relative;
+  width: 70px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  color: white;
+}
+.wrapper:hover {
+  background-color: rgb(82, 0, 82);
+  border-radius: 10px;
+}
+.wrapper .icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 5px;
+}
+.wrapper .title {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+}/*# sourceMappingURL=s.module.css.map */

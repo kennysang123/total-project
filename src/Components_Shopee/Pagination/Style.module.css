@@ -1,0 +1,37 @@
+.wrapper {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0px;
+  right: 50%;
+  transform: translateX(50%);
+  background: #373740;
+  z-index: 1;
+  border-top: 5px solid #6201ee;
+  /* opacity: 80%; */
+  border-bottom: 1px solid #141619;
+  box-shadow: 0px 1px 3px 0px black;
+}
+
+.btnPadding {
+  padding: 10px 20px;
+}
+
+.next {
+  font-size: 50px;
+  position: absolute;
+  right: 0px;
+}
+
+.before {
+  font-size: 50px;
+  position: absolute;
+  left: 0px;
+}
+
+.textcenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}/*# sourceMappingURL=Style.module.css.map */

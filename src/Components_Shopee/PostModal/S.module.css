@@ -1,0 +1,69 @@
+@-webkit-keyframes moveup {
+  0% {
+    left: 0px;
+    top: 80vh;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+@keyframes moveup {
+  0% {
+    left: 0px;
+    top: 80vh;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+.modal {
+  /* annimation */
+  -webkit-animation-name: moveup;
+          animation-name: moveup;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  /*  */
+  height: 95vh;
+  background-color: #33333d;
+  box-shadow: 0px -5px 15px 5px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  top: 40px;
+  left: 0px;
+  position: fixed;
+  z-index: 20;
+  width: 100%;
+}
+.modal-close {
+  /* background-color: red; */
+  position: absolute;
+  top: -13px;
+  right: 0px;
+  padding: 25px;
+  cursor: pointer;
+  color: rgba(240, 248, 255, 0.2784313725);
+}
+.modal-close svg {
+  width: 24px;
+  height: 24px;
+}
+.modal-title {
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 5vw;
+}
+.modal-title-code {
+  color: orange;
+}
+.modal-content {
+  top: 45px;
+  position: absolute;
+  background-color: transparent;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-top: 2px solid rgba(0, 0, 0, 0.8784313725);
+  /* box-shadow: inset 0px 1px 3px 2px black; */
+}/*# sourceMappingURL=S.module.css.map */

@@ -1,0 +1,98 @@
+.BDS_TWITTER {
+  background-color: gray;
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+}
+.BDS_TWITTER .spaceTop {
+  height: 5vh;
+}
+.BDS_TWITTER .searchNull {
+  color: white;
+  margin: 10px;
+  width: 140px;
+}
+
+.BtnReloadAll {
+  display: flex;
+  justify-content: center;
+}
+
+.Loading {
+  z-index: 1000;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: white;
+  padding-left: 8px;
+  padding-right: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.484);
+}
+.Loading > div:nth-child(1) {
+  width: 1rem;
+  height: 1rem;
+}
+
+.Flag {
+  background-color: white;
+  width: 90%;
+  height: 116px;
+  position: fixed;
+  bottom: 60px;
+  left: 10px;
+}
+.Flag .header {
+  margin-top: 10px;
+  height: auto;
+  display: flex;
+}
+.Flag .header .icon {
+  margin-left: 10px;
+}
+.Flag .header .text {
+  margin-top: 2px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.Flag .iconClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.Flag .body {
+  position: absolute;
+  left: 55px;
+  width: 320px;
+}
+
+.Flag2 {
+  background-color: white;
+  width: 40%;
+  height: 400px;
+  position: relative;
+}
+.Flag2 .header {
+  margin-top: 10px;
+  height: auto;
+}
+.Flag2 .header .text {
+  margin-top: 2px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 130px;
+}
+.Flag2 .iconClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.Flag2 .body {
+  position: absolute;
+  left: 10px;
+  width: 160px;
+}/*# sourceMappingURL=s.module.css.map */

@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.Main__Logo {
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.Main__Logo img {
+  height: auto;
+  width: 70vw;
+}
+
+.Header__Title {
+  color: rgb(24, 63, 118);
+}
+
+.Youtube__Video {
+  margin-bottom: 3rem;
+}
+.Youtube__Video iframe {
+  width: 100vw;
+  height: 60vw;
+}
+
+.List__Avatar {
+  height: 120px;
+  width: 120px;
+  background-color: gray;
+  background-size: cover;
+}
+
+/* 
+INSERT INTO `VnTechVnGate`(`namex`) VALUES (1); 
+https://drive.google.com/file/d/1WwdjIDasInAVZfwcfEXfqdjUV5zf7_kr/view?usp=share_link
+https://drive.google.com/file/d/14Jec47uq-KHaARhoWKb2biI-fOoIocDh/view?usp=share_link
+https://drive.google.com/file/d/1mfuPullMW0cIoaRKe0eAPCFRLERBlvrV/view?usp=share_link
+https://drive.google.com/file/d/1oIcFjABg-J-kkbjVMOllV02fF0tDcP3l/view?usp=share_link
+https://drive.google.com/file/d/1QcOYLwzgY37_upeWhcdg7baNvTUq8dKs/view?usp=share_link
+https://drive.google.com/file/d/1PSnju6lNoYvWFXM4Xa_-nx74kGEC7VXw/view?usp=share_link
+https://drive.google.com/file/d/1rayHNfs-K1nA-bVi2Ce-rK5M-UBSC9fM/view?usp=share_link
+https://drive.google.com/file/d/10_ejPGgfxeNb9HlXZtjqM-9UlI5Ga8sE/view?usp=share_link
+https://drive.google.com/file/d/1n_Sa6ePZQTF_NIpKoDkFT3j8ilmU_yt_/view?usp=share_link
+https://drive.google.com/file/d/1YaCaJK4TXh08OgMCleyBR2mpR5B8KzOe/view?usp=share_link
+https://drive.google.com/file/d/1c_3vbDOoRPkotKn1FytsPGNIO7f2_bNJ/view?usp=share_link
+https://drive.google.com/file/d/1XkmmIt8vcJ-zKy-9FUeBZ68XtzmplgCb/view?usp=share_link
+https://drive.google.com/file/d/1XQ_JDNXAGtwVeb55qBgzjE0eAgDOsbMz/view?usp=share_link
+https://drive.google.com/file/d/1EWMqs128rbKmED3rFyoIEe1ud6Jz3FlT/view?usp=share_link
+https://drive.google.com/file/d/1gGD4sl-8_CrguWMqAIjY6AUSCa8Gy-Xx/view?usp=share_link
+https://drive.google.com/file/d/1ilSqYsz6C4KnOb_uv4ifNSsYIrkwyegW/view?usp=share_link
+https://drive.google.com/file/d/1rgZoN2f0AZX4xN2_vR27Tamgx7S9bk06/view?usp=share_link
+https://drive.google.com/file/d/1qkog1JsJqz1_cI2T0KLeuZfWeFfegWro/view?usp=share_link
+
+https://drive.google.com/file/d/1qkog1JsJqz1_cI2T0KLeuZfWeFfegWro/preview
+
+Capacitive Sensors RFnivo® 
+UWT RFnivo RF 3000
+UWT RFnivo RF 8000 Series
+UWT Capanivo CN 4000 Series
+UWT Capanivo CN 7000 Series
+UWT Capanivo CN 8000 Series
+UWT RFnivo RF 3000
+UWT RFnivo RF 3000
+UWT NivoBob NB 3100 
+UWT NivoCapa NC 8000 Series 
+UWT NivoRadar NR 3000 Series
+UWT NivoGuide NG 3000 Series
+NivoGuide® - NG 3100
+
+
+
+ContactRadar
+
+
+
+
+
+
+
+IA ITA Series
+
+*//*# sourceMappingURL=style.css.map */

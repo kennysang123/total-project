@@ -6,7 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { StoreProvider } from "./store";
 
-const root = ReactDOM.createRoot(document.getElementById("vngate"));
+const root = ReactDOM.createRoot(document.getElementById("momo"));
 root.render(
   <React.StrictMode>
     <StoreProvider>

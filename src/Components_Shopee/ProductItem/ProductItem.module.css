@@ -1,0 +1,117 @@
+.product {
+  background-color: var(--card-color);
+  height: 457px;
+  box-shadow: var(--boxshadow);
+}
+.product:hover {
+  cursor: pointer;
+  position: relative;
+  top: -2px;
+  border-bottom: 2px solid #ffc107;
+}
+
+.photo {
+  width: 100%;
+  /* height: 200px; */
+  background-color: #ffc107;
+  background-image: url(https://www.w3schools.com/html/pic_trulli.jpg);
+  padding-top: 75%;
+  position: relative;
+}
+
+.daysAvailable {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0px 5px;
+  color: white;
+  margin: 5px;
+  font-size: 14px;
+}
+.daysAvailable:hover {
+  color: #ffc107;
+}
+
+.daysAvailable:hover ~ .tooltip2 {
+  display: block;
+}
+
+.tooltip2 {
+  position: absolute;
+  top: 35px;
+  left: 10px;
+  color: white;
+  background: rgba(51, 51, 51, 0.5294117647);
+  font-size: 14px;
+  padding: 10px;
+  display: none;
+}
+
+.text {
+  position: relative;
+  bottom: 6px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0px 5px;
+  height: 48px;
+  margin-top: 5px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.sale {
+  padding: 0px 5px;
+  color: green;
+}
+
+.dateAvailable,
+.location {
+  padding: 0px 10px;
+  color: var(--text-color);
+  font-size: 12px;
+}
+
+.dateUpdate,
+.viewChar {
+  font-size: 12px;
+  padding: 0px 5px;
+  color: var(--text-color);
+}
+
+.location {
+  padding-top: 2px;
+}
+
+.price {
+  color: var(--price-color);
+  padding: 0px 7px;
+  font-size: 16px;
+}
+
+.roomSpec {
+  padding-left: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.roomSpec-child {
+  background: rgba(99, 100, 100, 0.7882352941);
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+}
+
+.rated {
+  padding: 0px 10px;
+}
+
+.viewNumber {
+  background: #dc3545;
+  padding: 3px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+}/*# sourceMappingURL=ProductItem.module.css.map */

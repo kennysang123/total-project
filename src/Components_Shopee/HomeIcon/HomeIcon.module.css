@@ -1,0 +1,36 @@
+.wrapper {
+  width: 100%;
+}
+
+/* icon format */
+.navIcon {
+  position: relative;
+  background-color: transparent;
+  width: 90px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.navIcon:hover {
+  background-color: #3e0292;
+  cursor: pointer;
+}
+
+.iconTop {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
+
+.titleIcon {
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+}/*# sourceMappingURL=HomeIcon.module.css.map */

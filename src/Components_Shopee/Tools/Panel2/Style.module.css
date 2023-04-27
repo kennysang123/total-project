@@ -1,0 +1,11 @@
+.none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.none:hover {
+  background-color: var(--price-color);
+  padding-right: 5px;
+}/*# sourceMappingURL=Style.module.css.map */

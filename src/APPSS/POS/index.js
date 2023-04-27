@@ -15,10 +15,16 @@ import MuiAutoComplete from "./comp/Mui/MuiAutoComplete.tsx";
 import MuiLayout from "./comp/Mui/MuiLayout.tsx";
 import NavBar from "./comp/NavBar.tsx";
 import BotNavigation from "./comp/BotNavigation.tsx";
-import DrawerRight from "./comp/DrawerRight.tsx";
+import DrawerRight from "./comp/DrawerMenu.tsx";
 import DrawerFilter from "./comp/DrawerFilter.tsx";
 import DrawerReport from "./comp/DrawerReport.tsx";
 import { AppProvider } from "./Context/AppContext.tsx";
+import DrawerUser from "./comp/DrawerUser";
+import MainView from "./comp/MainView";
+import DrawerGioiThieu from "./comp/DrawerGioiThieu";
+import DrawerMenuGioiThieu from "./comp/DrawerMenuGioiThieu";
+import DrawerDangKy from "./comp/DrawerDangKy";
+import DrawerXoaHoSo from "./comp/DrawerXoaHoSo";
 const cx = classNames.bind(styles);
 
 const menuInit = {
@@ -32,12 +38,20 @@ export default function POS() {
   console.log("main render");
   return (
     <>
-      <NavBar />
-
-      <AppProvider>
-        <BotNavigation />
-        <DrawerReport />
-      </AppProvider>
+      <div className="container">
+        <AppProvider>
+          <NavBar />
+          <MainView />
+          <BotNavigation />
+          <DrawerMenuGioiThieu />
+          <DrawerGioiThieu />
+          <DrawerDangKy />
+          <DrawerXoaHoSo />
+          <DrawerFilter />
+          <DrawerRight />
+          <DrawerUser />
+        </AppProvider>
+      </div>
       {/* <DrawerFilter
         props={{
           isShowDrawerFilter: isShowDrawerFilter,

@@ -15,7 +15,9 @@ if (isset($_GET["sub"])) {
     $api2 = explode("/", $api);
     $method = $api2[0];
     $param = $api2[1];
-    $rentSelectDuration = $bds->$method($param);
+    $rentSelectDuration = $bds->$method($param); // doc du lieu 
+    //`https://vngate.top/API/BdsPHP/out.php?sub=${requestMethod}/${requestParam}/`
+    //`https://vngate.top/API/BdsPHP/out.php?sub=vntech_select_with_search_order_by_code/{"searchStr":"","dateNow":"2023-03-11"}/`
 } else if ($_GET["pageupdate"] == "rent") {
     $data = json_decode(file_get_contents('php://input'), true); // return a array
     $jsonStr = $data["dataStr"];

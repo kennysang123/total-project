@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { Stack } from "@mui/material";
+import { AppContext } from "../Context/AppContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -50,8 +52,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
+let timer: any;
 export default function SearchAppBar() {
+  const { setSearchValue, searchValue } = useContext(AppContext);
+  const [searchValue2, setSearchValue2] = useState<any>("");
+
+  console.log({ searchValue });
+
+  const handleSearchId = (e: any) => {
+    let v = e.target.value;
+    v = v.trim();
+    setSearchValue2(v);
+    console.log({ v });
+    if (v !== "") {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        console.log("tick gi");
+        setSearchValue(v);
+        clearTimeout(timer);
+      }, 1000);
+    } else {
+      clearTimeout(timer);
+      setSearchValue("");
+      setSearchValue2("");
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar component="nav">
@@ -61,9 +87,18 @@ export default function SearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, padding: "5px" }}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            {/* <Stack direction={"column"}>
+              <Typography variant="h5">Mai Mối</Typography>
+              <Typography variant="body2">maimoi.vngate.top</Typography>
+            </Stack> */}
+            <img
+              src="https://i.ibb.co/Tv1tG0d/logo-maimoi.png"
+              alt="logo-maimoi"
+              height={"38px"}
+            ></img>
           </IconButton>
           <Typography
             variant="h6"
@@ -71,7 +106,7 @@ export default function SearchAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            |
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -80,6 +115,8 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              value={searchValue2}
+              onChange={(e) => handleSearchId(e)}
             />
           </Search>
         </Toolbar>

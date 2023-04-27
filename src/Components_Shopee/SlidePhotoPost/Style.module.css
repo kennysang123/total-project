@@ -1,0 +1,57 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+  background-color: rgb(55, 55, 64);
+  box-shadow: 1px 1px 1px 0px black;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.wrapper-numofphoto {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 3px 20px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper-photo {
+  width: 100%;
+  height: auto;
+}
+.wrapper-after {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.wrapper-after-icon {
+  font-size: 35px;
+}
+.wrapper-after:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.wrapper-before {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translate(0, -50%);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.wrapper-before-icon {
+  font-size: 35px;
+}
+.wrapper-before:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}/*# sourceMappingURL=Style.module.css.map */

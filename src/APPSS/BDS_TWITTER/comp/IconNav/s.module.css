@@ -1,0 +1,35 @@
+.IconNav {
+  /* background-color: red; */
+  position: relative;
+  width: 70px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  color: white;
+}
+.IconNav:hover {
+  background-color: rgb(82, 0, 82);
+  border-radius: 10px;
+}
+.IconNav .icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 5px;
+}
+.IconNav .title {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  width: 79px;
+  /* background: red; */
+  text-align: center;
+}
+
+.HuongDan {
+  margin-top: -3px;
+}/*# sourceMappingURL=s.module.css.map */

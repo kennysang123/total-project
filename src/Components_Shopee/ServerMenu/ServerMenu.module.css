@@ -1,0 +1,41 @@
+.wrapper {
+  width: 100%;
+}
+
+.containerX {
+  margin: 0px 15px;
+}
+
+.menulist {
+  list-style-type: none;
+  margin-left: -35px;
+}
+
+.menulist li {
+  background-color: var(--bg-menulist);
+  box-shadow: var(--boxshadow);
+  margin-top: 15px;
+  color: var(--li-color);
+  font-size: 20px;
+  border-left: 5px solid var(--bg-menulist);
+  /* padding */
+  border-radius: 5px;
+  padding: 5px 0px;
+  padding-left: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.menulist li:hover {
+  cursor: pointer;
+  background-color: var(--menulist-hover);
+  border-left: 5px solid var(--bg-menulist-borderleft-color);
+}
+
+.wrapperView {
+  padding: 10px;
+  box-shadow: var(--boxshadow);
+  border-radius: 5px;
+  height: 50vh;
+}/*# sourceMappingURL=ServerMenu.module.css.map */

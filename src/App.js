@@ -27,6 +27,9 @@ import RENT_VNGATE_UP from "./APPSS/RENT_VNGATE_UP";
 import BDS_VNGATE from "./APPSS/BDS_VNGATE";
 import YEULACUOI_VNGATE from "./APPSS/YEULACUOI_VNGATE";
 import POS from "./APPSS/POS";
+import GPT3 from "./APPSS/GPT3";
+import VNTECH from "./APPSS/VNTECH/VNTECH";
+import TASK1 from "./APPSS/TASK1";
 
 function App() {
   return (
@@ -39,7 +42,11 @@ function App() {
           <Route path="/rent" element={<RENT_VNGATE />} />
           <Route path="/rentup" element={<RENT_VNGATE_UP />} /> */}
           {/* <Route path="/" element={<HomeVNGATE />} /> */}
-          <Route path="/" element={<POS />} />
+          <Route path="/task1" element={<TASK1 />} />
+          <Route path="/pos" element={<POS />} />
+          <Route path="/gpt3" element={<GPT3 />} />
+          <Route path="/ylc" element={<YEULACUOI_VNGATE />} />
+          <Route path="/" element={<VNTECH />} />
 
           {/* <Route path="/edit" element={<EditJson />} />
           <Route path="/bds" element={<Bds />} />

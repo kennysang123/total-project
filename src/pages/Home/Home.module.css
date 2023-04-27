@@ -1,0 +1,51 @@
+.wrapper {
+  width: 100%;
+}
+
+.logo {
+  margin-bottom: 30px;
+  width: 220px;
+}
+
+.title {
+  color: var(--bg-menulist-borderleft-color);
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+.title-dsp {
+  color: gray;
+  text-align: center;
+}
+
+.space {
+  height: 80px;
+  width: 100%;
+}
+.space-bottom {
+  height: 50vh;
+}
+
+.ios {
+  width: 126px;
+  padding: 10px;
+  text-align: center;
+}
+
+.android {
+  width: 126px;
+  padding: 10px;
+  text-align: center;
+}
+
+.btnX {
+  font-weight: bold;
+}
+
+.btnX + .btnX {
+  margin-left: 15px;
+}
+
+.padding + .padding {
+  margin: 0px 10px;
+}/*# sourceMappingURL=Home.module.css.map */

@@ -1,0 +1,15 @@
+.mobileSize {
+  max-width: 415px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.VanHoa {
+  width: 100%;
+}
+.VanHoa .cardx {
+  /* border: 1px solid; */
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 20px;
+}/*# sourceMappingURL=s.module.css.map */

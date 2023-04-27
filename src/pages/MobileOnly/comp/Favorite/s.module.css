@@ -1,0 +1,11 @@
+.wrapperP {
+  /* background-color: rgb(229, 229, 229); */
+  margin: 10px;
+}
+.wrapperP .contentP {
+  border: 1px solid #b2bec3;
+  height: 70vh;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: auto;
+}/*# sourceMappingURL=s.module.css.map */

@@ -19,7 +19,7 @@ class  Cbds
   public function connect()
   {
     //$this->cn = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
-    $this->conn1 = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
+    $this->conn1 = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
     mysqli_set_charset($this->conn1, "utf8");
   }
 
@@ -431,28 +431,92 @@ class  Cbds
     $inStr = json_decode($inStr, true); //return a array
     $searchStr = $inStr["searchStr"];
     $dateNow = $inStr["dateNow"];
-    /* 
-    id INT NOT NULL AUTO_INCREMENT,
-	code TEXT NULL,
-	namex TEXT NULL,
-	sex TEXT NULL,
-	birthday TEXT NULL,
-	age INT NULL,
-	verify TEXT NULL,
-	dist TEXT NULL,
-	city TEXT NULL,
-	country TEXT NULL,
-	toila TEXT NULL,
-	timnguoi TEXT NULL,
-	facebook TEXT NULL,
-	telegram TEXT NULL,
-	whatsapp TEXT NULL,
-	twitter TEXT NULL,
-	instagram TEXT NULL,
-	linex TEXT NULL,
-	PRIMARY KEY (id)
-    */
+
     $sql = "SELECT id,code,namex,sex,birthday,age,verify,dist,city,country,toila,timnguoi,facebook,telegram,whatsapp,twitter,instagram,linex FROM KetDoiVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR namex LIKE '%$searchStr%' OR country LIKE '%$searchStr%' ORDER BY id DESC;"; //DESC ASC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+
+  //----------maimoi------------------------------
+  public function mm_select_with_search_order_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $searchStr = $inStr["searchStr"];
+    $dateNow = $inStr["dateNow"];
+
+    $sql = "SELECT id,code,namex,avatar,gender,birthday,age,verify,dist,city,country,aboutme,ifind,facebook,telegram,zalo,whatsapp,twitter,instagram,linex FROM KetDoiVnGate WHERE  code LIKE '%$searchStr%' OR  dist LIKE '%$searchStr%' OR city LIKE '%$searchStr%' OR namex LIKE '%$searchStr%' OR country LIKE '%$searchStr%' ORDER BY id DESC;"; //DESC ASC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+  //----------vntech------------------------------
+  public function vntech_select_with_search_order_by_code($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $searchStr = $inStr["searchStr"];
+    $dateNow = $inStr["dateNow"];
+
+    $sql = "SELECT id,namex,typex,aboutme,pdf,photo FROM VnTechVnGate WHERE  namex LIKE '%$searchStr%' OR  typex LIKE '%$searchStr%' OR aboutme LIKE '%$searchStr%' ORDER BY id DESC;"; //DESC ASC
+    $this->connect();
+    if ($this->conn1) {
+      $query = mysqli_query($this->conn1, $sql);
+      if ($query) {
+        if (true) {
+          // Lấy nhiều dữ liệu gán vào mảng
+          while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+          }
+
+          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+      }
+    } else {
+      $error = ["error" => "ket noi msql loi."];
+      echo json_encode($error);
+    }
+    $this->close();
+  }
+  public function vntech_select_with_search_order_by_id($value)
+  {
+    $inStr = $value;
+    $inStr = json_decode($inStr, true); //return a array
+    $searchStr = $inStr["searchStr"];
+    $dateNow = $inStr["dateNow"];
+
+    $sql = "SELECT id,namex,typex,aboutme,pdf,photo FROM VnTechVnGate WHERE  id LIKE '%$searchStr%' ORDER BY id DESC;"; //DESC ASC
     $this->connect();
     if ($this->conn1) {
       $query = mysqli_query($this->conn1, $sql);

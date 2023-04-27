@@ -1,0 +1,16 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  margin: auto auto;
+  position: relative;
+}
+.wrapper .content {
+  background-image: url("https://i.ibb.co/n01yLBZ/bride-and-groom-wallpaper-1920x1080.jpg");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100vw;
+  height: 100vh;
+}/*# sourceMappingURL=s.module.css.map */

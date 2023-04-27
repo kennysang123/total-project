@@ -16,41 +16,39 @@ import MenuIcon from "@mui/icons-material/Menu";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CampaignIcon from "@mui/icons-material/Campaign";
 import { AppContext } from "../Context/AppContext";
+import { Divider, Typography, Stack, Button } from "@mui/material";
+import FemaleIcon from "@mui/icons-material/Female";
+import MaleIcon from "@mui/icons-material/Male";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import { globalCSS } from "./GlobalStyle";
 
-function refreshMessages(): MessageExample[] {
+/* function refreshMessages(): MessageExample[] {
   const getRandomInt = (max: number) =>
     Math.floor(Math.random() * Math.floor(max));
 
   return Array.from(new Array(50)).map(
     () => messageExamples[getRandomInt(messageExamples.length)]
   );
-}
-
+} */
 export default function BotNavigation() {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
-  const [messages, setMessages] = React.useState(() => refreshMessages());
 
-  const { setIsOpenDrawerReport } = useContext(AppContext);
+  const {
+    setOpenDrawerGioiThieu,
+    setIsOpenDrawerFilter,
+    setIsOpenDrawerMenu,
+    searchValue,
+    setSearchValue,
+    setOpenDrawerMenuGioiThieu,
+  } = useContext(AppContext);
 
-  React.useEffect(() => {
-    (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-    setMessages(refreshMessages());
-  }, [/* value, */ setMessages]);
-
+  const sizePhoto = 70;
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       <CssBaseline />
-      <List>
-        {messages.map(({ primary, secondary, person }, index) => (
-          <ListItem button key={index + person}>
-            <ListItemAvatar>
-              <Avatar alt="Profile Picture" src={person} />
-            </ListItemAvatar>
-            <ListItemText primary={primary} secondary={secondary} />
-          </ListItem>
-        ))}
-      </List>
+
       <Paper
         sx={{
           position: "fixed",
@@ -61,6 +59,20 @@ export default function BotNavigation() {
         elevation={3}
         color="primary"
       >
+        {/* <Stack>
+          {searchValue !== "" && (
+            <Button
+              sx={{ borderRadius: "0px" }}
+              variant="contained"
+              size="large"
+              color={"error"}
+              fullWidth
+              onClick={() => setSearchValue("")}
+            >
+              Xóa tìm kiếm
+            </Button>
+          )}
+        </Stack> */}
         <BottomNavigation
           showLabels
           value={value}
@@ -69,13 +81,21 @@ export default function BotNavigation() {
           }}
         >
           <BottomNavigationAction
-            label="Tố cáo"
+            label="Giới thiệu"
             icon={<CampaignIcon />}
-            onClick={() => setIsOpenDrawerReport(true)}
+            onClick={() => setOpenDrawerMenuGioiThieu(true)}
           />
-          <BottomNavigationAction label="Yêu thích" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Lọc nhanh" icon={<FilterAltIcon />} />
-          <BottomNavigationAction label="Menu" icon={<MenuIcon />} />
+          {/* <BottomNavigationAction label="Yêu thích" icon={<FavoriteIcon />} /> */}
+          <BottomNavigationAction
+            label="Lọc"
+            icon={<FilterAltIcon />}
+            onClick={() => setIsOpenDrawerFilter(true)}
+          />
+          <BottomNavigationAction
+            label="Menu"
+            icon={<MenuIcon />}
+            onClick={() => setIsOpenDrawerMenu(true)}
+          />
         </BottomNavigation>
       </Paper>
     </Box>
@@ -90,45 +110,45 @@ interface MessageExample {
 
 const messageExamples: readonly MessageExample[] = [
   {
-    primary: "Brunch this week?",
+    primary: "Lê Thị Thơm",
     secondary:
       "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-    person: "/static/images/avatar/5.jpg",
+    person: "https://i.pravatar.cc/",
   },
   {
     primary: "Birthday Gift",
     secondary: `Do you have a suggestion for a good present for John on his work
       anniversary. I am really confused & would love your thoughts on it.`,
-    person: "/static/images/avatar/1.jpg",
+    person: "https://i.pravatar.cc/",
   },
   {
     primary: "Recipe to try",
     secondary:
       "I am try out this new BBQ recipe, I think this might be amazing",
-    person: "/static/images/avatar/2.jpg",
+    person: "https://i.pravatar.cc/",
   },
   {
     primary: "Yes!",
     secondary: "I have the tickets to the ReactConf for this year.",
-    person: "/static/images/avatar/3.jpg",
+    person: "https://i.pravatar.cc/",
   },
   {
     primary: "Doctor's Appointment",
     secondary:
       "My appointment for the doctor was rescheduled for next Saturday.",
-    person: "/static/images/avatar/4.jpg",
+    person: "https://i.pravatar.cc/",
   },
   {
     primary: "Discussion",
     secondary: `Menus that are generated by the bottom app bar (such as a bottom
       navigation drawer or overflow menu) open as bottom sheets at a higher elevation
       than the bar.`,
-    person: "/static/images/avatar/5.jpg",
+    person: "https://i.pravatar.cc/",
   },
   {
     primary: "Summer BBQ",
     secondary: `Who wants to have a cookout this weekend? I just got some furniture
       for my backyard and would love to fire up the grill.`,
-    person: "/static/images/avatar/1.jpg",
+    person: "https://i.pravatar.cc/",
   },
 ];
