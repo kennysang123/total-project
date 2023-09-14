@@ -1,0 +1,25 @@
+Bộ lọc: thời gian, nhân viên
+
+Bảng, biểu đồ: doanh thu, list cv ngày, tuần, tháng
+
+Tiến độ cv của nhân viên theo ngày, tuần, tháng
+
+Bảng yêu cầu từ nhân viên
+
+--------
+Nhan vien , so cvht, tong cv
+Bang hop dong da ky:
+ngay thang, msnv, gia tri, %hh
+-------
+Bang cong viec hang ngay
+- Goi 100 cuoc
+- Dang 200 tin
+- Update 200 can
+- Dat 40 khach
+#f3f6f9
+------
+Bang cong viec hang ngay:
+ngayThang, mSNV, arrHoanThanh, soHoanThanh, soChuaHoanThanh, tongSo
+- hoan thanh [0,1,2,3,4,5] 
+npm install react-chartjs-2
+-----

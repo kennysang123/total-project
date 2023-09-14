@@ -1,0 +1,26 @@
+.css001 {
+  color: transparent;
+
+  /* transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%; */
+  /* 
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-size: 150px; */
+  letter-spacing: 3px;
+  font-weight: bold;
+  background-image: linear-gradient(to right,
+      #462523 0,
+      #cb9b51 22%,
+      #f6e27a 45%,
+      #f6f2c0 50%,
+      #f6e27a 55%,
+      #cb9b51 78%,
+      #462523 100%);
+  -webkit-background-clip: text;
+  font-size: 1.5rem;
+  z-index: 10;
+  width: 70vw;
+}

@@ -1,4 +1,0 @@
-1. doi meta and title trong index
-2. doi trong manifest
-"short_name": "RENT.VNGATE.TOP",
-  "name": "Real Estate in Vietnam - rent.vngate.top",

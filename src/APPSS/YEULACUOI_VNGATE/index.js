@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames/bind";
-import styles from "./s.module.scss";
+
 import "./root.css";
 import PostThum from "./comp/PostThum";
 import ClassGlobal from "./Global/ClassGlobal";
@@ -15,6 +14,8 @@ import PanelFavorite from "./comp/PanelFavorite";
 import AlertDialog from "./comp/AlertDialog";
 import PanelHuongDan from "./comp/PanelHuongDan";
 import PanelMenu from "./comp/PanelMenu";
+import classNames from "classnames/bind";
+import styles from "./s.module.scss";
 const cx = classNames.bind(styles);
 let timerMain;
 let timerLoadAllData;

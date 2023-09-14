@@ -129,16 +129,10 @@ AFTER
 	PhoneMain;
 
 -- Thiet ke db cho rent.vngate.top------------
-CREATE TABLE RentVnGate (
+CREATE TABLE StoreSale (
 	id INT NOT NULL AUTO_INCREMENT,
-	duration TEXT NULL,
-	dayUpdate TEXT NULL,
-	content TEXT NULL,
-	price TEXT NULL,
-	area TEXT NULL,
-	bath TEXT NULL,
-	bed TEXT NULL,
-	owner TEXT NULL,
+	productCode TEXT NULL,
+	prodcutCategory TEXT NULL,
 	PRIMARY KEY (id)
 ) ENGINE = MyISAM;
 
@@ -207,5 +201,77 @@ CREATE TABLE KetDoiVnGate (
 	twitter TEXT NULL,
 	instagram TEXT NULL,
 	linex TEXT NULL,
+	PRIMARY KEY (id)
+) ENGINE = MyISAM;
+
+-- Thiet ke db cho dung dashboard------------
+CREATE TABLE DungDB_CVHN (
+	id INT NOT NULL AUTO_INCREMENT,
+	ngayThang DATE NULL,
+	mSNV TEXT NULL,
+	arrHoanThanh TEXT NULL,
+	soHoanThanh TEXT NULL,
+	soChuaHoanThanh INT NULL,
+	tongSo TEXT NULL,
+	PRIMARY KEY (id)
+) ENGINE = MyISAM;
+
+select
+	*
+from
+	DungDB_CVHN
+where
+	ngayThang between '2023-7-03'
+	and '2023-7-08'
+	and mSNV like 'NV001';
+
+select
+	SUM(soHoanThanh) as tongSoHoanThanh,
+	SUM(tongSo) as tongSoCV,
+	(SUM(soHoanThanh) / SUM(tongSo)) * 100 as phanTramHoanThanh
+from
+	DungDB_CVHN
+where
+	ngayThang between '2023-7-03'
+	and '2023-7-08'
+	and mSNV like 'NV001';
+
+-- Bang doanh so ngay
+CREATE TABLE DungDB_DoanhSoHangNgay (
+	id INT NOT NULL AUTO_INCREMENT,
+	ngayThang DATE NULL,
+	mSNV TEXT NULL,
+	doanhSo INT NULL,
+	PRIMARY KEY (id)
+) ENGINE = MyISAM;
+
+select
+	*
+from
+	DungDB_DoanhSoHangNgay
+where
+	ngayThang between '2023-7-01'
+	and '2023-7-03'
+	and mSNV like 'NV001';
+
+select
+	SUM(doanhSo) AS doanhSoThang
+from
+	DungDB_DoanhSoHangNgay
+where
+	ngayThang between '2023-7-01'
+	and '2023-7-31'
+	and mSNV like 'NV001';
+
+--bang cong viec hang ngay
+CREATE TABLE DungDB_CongViecHangNgay (
+	id INT NOT NULL AUTO_INCREMENT,
+	ngayThang DATE NULL,
+	mSNV TEXT NULL,
+	cacCongViecHoanThanh TEXT NULL,
+	cacCongViec TEXT NULL,
+	soHoanThanh TEXT NULL,
+	soChuaHoanThanh INT NULL,
+	tongSoCongViec TEXT NULL,
 	PRIMARY KEY (id)
 ) ENGINE = MyISAM;

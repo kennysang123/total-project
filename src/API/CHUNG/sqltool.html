@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='https://unpkg.com/react@16.3.1/umd/react.production.min.js'></script>
+  <script src='https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js'></script>
+  <script src='https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>SQL tool</title>
+
+
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type='text/babel'>
+    const Link = ReactRouterDOM.Link;
+    const Route = ReactRouterDOM.Route;
+    const App = () => (
+      <ReactRouterDOM.HashRouter>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/register">Register</Link></li>
+        </ul>
+        <Route path="/" exact component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <SQLlenh />
+
+
+      </ReactRouterDOM.HashRouter>
+    )
+    const Home = () => <h1>Home</h1>
+    const Login = () => <h1>Login</h1>
+    const Register = () => <h1>Register</h1>
+    const SQLlenh = () => {
+      const arr = []
+      for (let index = 1; index <= 120; index++) {
+
+        let lenh = `UPDATE StoreSale SET productDescription = 0 WHERE id = ${index};`;
+        //let lenh = `INSERT INTO StoreSale ( productCode, prodcutCategory) VALUES ('MS00${index}', 'vaynu'); `;
+        arr.push(lenh);
+      }
+      return (
+        <React.Fragment>
+          <div style={{ marginLeft: "5vw" }}>{arr.map((value, index) => <div key={index} >{value}</div>)}</div>
+        </React.Fragment>
+      )
+    }
+
+
+
+    ReactDOM.render(<App />, document.querySelector('#root'));
+  </script>
+</body>
+
+</html>
